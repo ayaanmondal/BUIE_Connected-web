@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request,url_for
+from flask import Flask, render_template, json, request,url_for,redirect
 from wtform import *
 from models import *
 
@@ -30,14 +30,19 @@ def singup():
         user = User(username=username, password=password)
         db.session.add(user)
         db.session.commit()
-        return "Registered Successfully"
+        return redirect(url_for('login'))
 
 
     return render_template('signup.html',form =reg_form)
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
-    return render_template('login.html')
+    login_form=LoginForm()
+
+    if login_form.validate_on_submit():
+        return "Logged in, successfully"
+
+    return render_template('login.html',form=login_form)
 
 if __name__ == "__main__":
     app.run(debug=False)
