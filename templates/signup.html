@@ -4,7 +4,7 @@
     <h1>signnup</h1>
     <form action="{{url_for('singup')}}" , method="POST">
         <div>
-            {{ form.username(class='form-control',placeholder='username', sutocomplete='off',autofocus=true)}}
+            {{ form.username(class='form-control',placeholder='username', autocomplete='off',autofocus=true)}}
             <ul>
                 {% for error in form.username.errors %}
                 <li>{{error}}</li>
@@ -28,6 +28,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div>
             {{ form.submit_botton(class='form-control',placeholder="Submit")}}
         </div>
