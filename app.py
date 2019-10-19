@@ -68,7 +68,8 @@ def chatroom():
 def logout():
 
     logout_user()
-    return "Logged out"
+    flash('You have logged out successfully','success')
+    return render_template('home.html')
 
 if __name__ == "__main__":
     app.run(debug=False)

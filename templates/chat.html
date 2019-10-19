@@ -23,7 +23,7 @@
     {% block content %}
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar">
-            <a class="navbar-brand" style="color: rgb(50, 226, 197)" href="/">
+            <a class="navbar-brand" style="color: rgb(50, 226, 197)" href="#">
                 <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="45" height="=40" class="d-inline-block align-top" style="color:   ghostwhite" alt=""> BUIE Codeblock
             </a>
 
@@ -58,9 +58,16 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
-                    <button type="button" style="margin-right: 10px" class="btn btn-primary" onclick="window.location.href='/chatroom'">Log out</button>
+                    <button type="button" style="margin-right: 10px" class="btn btn-primary" onclick="window.location.href='/'">Log out</button>
                 </ul>
         </nav>
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
     </header>
     {% endblock %}
 </body>

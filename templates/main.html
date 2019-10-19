@@ -61,6 +61,15 @@
                     <button type="button" style="margin-right: 10px" class="btn btn-primary" onclick="window.location.href='/signup'">Join this community</button>
                 </ul>
         </nav>
+        <!--{% with message = get_flashed_messages(with_categories=true)%} {% if messages%} ('category','message') Category:{{ message[0][0] }} {{ messages[0][1] }} {% endif %} {% endwith %}-->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
     </header>
+
     {% endblock %}
 </body>
