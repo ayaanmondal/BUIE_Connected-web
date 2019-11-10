@@ -13,6 +13,15 @@
         </div>
 
         <div>
+            {{ form.email(class='form-control',placeholder='email id', autocomplete='off',autofocus=true)}}
+            <ul>
+                {% for error in form.email.errors %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
             {{ form.password(class='form-control',placeholder='password')}}
             <ul>
                 {% for error in form.password.errors %}
@@ -37,7 +46,7 @@
 
     </form>
     <div>
-        <a href="/login">have a account</a>
+        <a>Already </a><a href="/login">have a account</a>
     </div>
 </body>
 {% endblock %}
