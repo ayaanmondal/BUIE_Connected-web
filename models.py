@@ -1,8 +1,9 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
+from wtform import *
 db = SQLAlchemy()
-
 class User(UserMixin,db.Model):
     __tablename__ = "users5"
     id = db.Column(db.Integer, primary_key=True)
@@ -12,6 +13,7 @@ class User(UserMixin,db.Model):
     profile_image = db.Column(db.String(250), nullable=False,default='default_profile.png')
     time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
     time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
+    #posts = db.relationship('Post', backref='author',lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}','{self.password}','{self.profile_image}')"
@@ -25,7 +27,27 @@ class User(UserMixin,db.Model):
 #time_inserted DATE,
 #time_updated DATE
 #);
+class Post(db.Model):
+    __tablename__ = "users6"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    #date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
+    time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
 
+#CREATE TABLE users6(
+#id SERIAL PRIMARY KEY,
+#title TEXT NOT NULL,
+#content TEXT NOT NULL,
+#user_id INT,
+#time_inserted DATE,
+#time_updated DATE
+#);
+
+    def __repr__(self):
+        return f"Post('{self.title}', '{self.date_posted}')"
 
 
 
@@ -46,9 +68,6 @@ class User(UserMixin,db.Model):
             'profile_image': self.profile_image,
             'email': self.email,
             'username': self.username,
-            'password_hash': self.password}
-
-    def __repr__(self):
-        return f"Username {self.username}"
+            'password': self.password}
 
     

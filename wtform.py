@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, csrf
+from wtforms import StringField, PasswordField, SubmitField, csrf , TextAreaField
 from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, Email
 #from models import User
 from flask_wtf.file import FileField, FileAllowed
-from models import User
+from models import User, Post
 
 def invalid_credentials(form,field):
 
@@ -34,7 +34,7 @@ class RegistrationFrom(FlaskForm):
      validators=[InputRequired(message="Password required"), 
      EqualTo('password', message="Passwords must match")])
 
-    submit_botton = SubmitField('Create')
+    submit_botton = SubmitField('Create Account')
 
     def validate_username(self,username):
         user_object = User.query.filter_by(username=username.data).first()
@@ -58,19 +58,25 @@ class LoginForm(FlaskForm):
 
 
 class UpdateUserForm(FlaskForm):
-    email = StringField('Email', validators=[InputRequired(), Email()])
-    username = StringField('Username', validators=[InputRequired()])
+    email = StringField('Email', validators=[Email()])
+    username = StringField('Username', validators=[])
     picture = FileField('Update Profile Picture',
                         validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Update')
+    submit_botton = SubmitField('Update')
 
-    def check_email(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Your email has already been registered!')
+    def validate_username(self,username):
+        user_object = User.query.filter_by(username=username.data).first()
+        if user_object:
+            raise ValidationError("Usernamename already exists, Select a different username.")
 
-    def check_username(self, field):
-        if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Your username has already been registered!')
+    def validate_email(self,email):
+        user_object = User.query.filter_by(email=email.data).first()
+        if user_object:
+            raise ValidationError("Email id already exists, Select a different username.")
 
 
 
+class PostForm(FlaskForm):
+    title = StringField('Title',validators=[InputRequired()])
+    content = TextAreaField('Content',validators=[InputRequired()])
+    submit_botton = SubmitField('Post')

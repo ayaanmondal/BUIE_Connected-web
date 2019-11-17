@@ -1,0 +1,34 @@
+<!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+    <ul class=flashes>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %} {% endif %} {% endwith %}
+    </ul>
+    <h1>Ask Your Query !</h1>
+    <form action="{{ url_for('new_post')}}" method="POST">
+        <div>
+            {{ form.title(class='form-control',placeholder='Title')}}
+            <ul>
+                {% for error in form.title.errors %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            {{ form.content(class='form-control',placeholder='description')}}
+            <ul>
+                {% for error in form.content.errors %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            {{ form.submit_botton(class='form-control',placeholder="Post")}}
+        </div>
+    </form>
+</body>
+{% endblock %}
