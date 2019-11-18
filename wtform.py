@@ -77,6 +77,6 @@ class UpdateUserForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    title = StringField('Title',validators=[InputRequired()])
-    content = TextAreaField('Content',validators=[InputRequired()])
+    title = StringField('Title',validators=[InputRequired(message="Title required")])
+    content = TextAreaField('Content',validators=[InputRequired(message="Description required")])
     submit_botton = SubmitField('Post')

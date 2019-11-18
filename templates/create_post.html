@@ -1,4 +1,11 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
+<style>
+    .rightfloat {
+        width: 55%;
+        height: 50;
+        margin-left: 25%;
+    }
+</style>
 
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
@@ -7,28 +14,30 @@
         <li class="{{ category }}">{{ message }}</li>
         {% endfor %} {% endif %} {% endwith %}
     </ul>
-    <h1>Ask Your Query !</h1>
-    <form action="{{ url_for('new_post')}}" method="POST">
-        <div>
-            {{ form.title(class='form-control',placeholder='Title')}}
-            <ul>
-                {% for error in form.title.errors %}
-                <li>{{error}}</li>
-                {% endfor %}
-            </ul>
-        </div>
+    <div class="rightfloat">
+        <h1>Ask Your Query !</h1>
+        <form action="{{ url_for('new_post')}}" method="POST">
+            <div>
+                {{ form.title(class='form-control',placeholder='Title')}}
+                <ul>
+                    {% for error in form.title.errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <div>
-            {{ form.content(class='form-control',placeholder='description')}}
-            <ul>
-                {% for error in form.content.errors %}
-                <li>{{error}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            {{ form.submit_botton(class='form-control',placeholder="Post")}}
-        </div>
-    </form>
+            <div>
+                {{ form.content(class='form-control',placeholder='Description')}}
+                <ul>
+                    {% for error in form.content.errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                {{ form.submit_botton(class='form-control',placeholder="Post")}}
+            </div>
+        </form>
+    </div>
 </body>
 {% endblock %}

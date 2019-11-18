@@ -28,46 +28,39 @@ class User(UserMixin,db.Model):
 #time_updated DATE
 #);
 class Post(db.Model):
-    __tablename__ = "users6"
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = "post3"
+    post_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    #date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
-    time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
-
-#CREATE TABLE users6(
-#id SERIAL PRIMARY KEY,
-#title TEXT NOT NULL,
-#content TEXT NOT NULL,
-#user_id INT,
-#time_inserted DATE,
-#time_updated DATE
-#);
-
+    content = db.Column(db.String(), nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    #time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
+    #time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
+#CREATE TABLE post2(
+#post_id SERIAL PRIMARY KEY,
+#title TEXT NOT NULL,
+#content TEXT NOT NULL,
+#user_id INT,
+#date_posted DATE,
+#FOREIGN KEY (user_id) REFERENCES Users5 (id)
+#);
+#class Postcontent(db.Model):
+    #__tablename__ = "content1"
+    #content_id = db.Column(db.Integer, primary_key=True)
+    #content = db.Column(db.Text, nullable=False)
+    #user_id = db.Column(db.Integer, nullable=False)
+    #date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-
-    def __init__(self, email, username, password='1234'):
-        self.email = email
-        self.username = username
-        self.password = password
-
-    def check_password(self, password):
-        return password(self, password)
-
-    @property
-    def serialize(self):
-        """Return object data in easily serializeable format"""
-
-        return {
-            'email': self.id,
-            'profile_image': self.profile_image,
-            'email': self.email,
-            'username': self.username,
-            'password': self.password}
-
+    #def __repr__(self):
+        #return f"Post('{self.content}', '{self.date_posted}')"
     
+#CREATE TABLE content1(
+#content_id SERIAL PRIMARY KEY,
+#content TEXT NOT NULL,
+#user_id INT,
+#date_posted DATE,
+#FOREIGN KEY (user_id) REFERENCES Users5 (id)
+#);

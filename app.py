@@ -2,7 +2,7 @@ import os
 import secrets
 from PIL import Image
 from flask_blogging import BloggingEngine, SQLAStorage
-#from flask_blogging.sqlastorage import Post, Tag
+from datetime import datetime
 from flask import Flask, render_template, json, request,url_for,redirect,flash
 from flask_login import LoginManager,login_user,current_user,login_required,logout_user
 from wtform import *
@@ -94,6 +94,7 @@ def account():
         new_email = update_form.email.data
         new_pic = current_user.profile_image
         password=current_user.password
+        new_time=datetime.now()
 
         #old_user=User.query.filter(User.id == current_user.id)
         #old_user = User.query.get(current_user.id)
@@ -101,11 +102,11 @@ def account():
         db.session.query(User).filter(User.id==current_user.id).delete()
         db.session.commit()
 
-        user= User(id=new_id,username=new_username,password=password,email=new_email,profile_image=new_pic)
+        user= User(id=new_id,username=new_username,password=password,email=new_email,profile_image=new_pic,time_updated=new_time)
         db.session.add(user)
         db.session.commit()
         
-        flash('User Account Updated! Please Log in With Updated information','success')
+        flash('User Account Updated!','success')
         #return redirect(url_for('logout'))
         return redirect(url_for('login'))
 
@@ -119,6 +120,15 @@ def account():
 def deleteaccount(old_user):
     db.session.delete(old_user.all())
     db.session.commit()
+
+@app.route('/viewaccount', methods=['GET', 'POST'])
+@login_required
+def view_account():
+    username=current_user.username
+    email=current_user.email
+    profile_image =url_for('static',filename='images/' + current_user.profile_image)
+    return render_template('view_account.html',profile_image=profile_image,username=username,email=email)
+
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -136,7 +146,9 @@ def save_picture(form_picture):
 @app.route('/chatroom',methods=['GET','POST'])
 @login_required
 def chatroom():
+    #users = User.query.all
     posts = Post.query.all()
+    #contents = Postcontent.query.all()
     return render_template('chat.html',posts=posts)
 
 
@@ -144,13 +156,27 @@ def chatroom():
 @login_required
 def new_post():
     post_form = PostForm()
-    if post_form.validate_on_submit():
-        new_post = Post(title=post_form.title.data,content=post_form.content.data,author=current_user.username)
+    if post_form.is_submitted():
+        title = post_form.title.data
+        content = post_form.content.data
+        new_post = Post(title=title,content=content,user_id=current_user.id)
         db.session.add(new_post)
         db.session.commit()
+    
+        #new_content = Postcontent(content=content,user_id=current_user.id)
+        #db.session.add(new_content)
+        #db.session.commit()
+
+        profile_image =url_for('static',filename='images/' + current_user.profile_image)
         flash('your post has been created!','success')
         return redirect(url_for('chatroom'))
-    return render_template('create_post.html',title='Newpost',form=post_form)
+    return render_template('create_post.html',title='New post',form=post_form)
+
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('chat.html', title=post.title,content=post.content, post=post)
+
 
 if __name__ == "__main__":
     app.run(debug=False)

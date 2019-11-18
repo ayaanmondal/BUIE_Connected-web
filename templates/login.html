@@ -1,30 +1,46 @@
 <!DOCTYPE html> {% extends "main.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
+<style>
+    .rightfloat {
+        width: 85%;
+        margin-left: 40%;
+        margin-right: 30%;
+    }
+</style>
 
 <body>
-    <h1>login</h1>
-    <form action="{{url_for('login')}}" , method="POST">
-        <div>
-            {{ form.username(class='form-control',placeholder='username', autocomplete='off',autofocus=true)}}
-            <ul>
-                {% for error in form.username.errors %}
-                <li>{{error}}</li>
-                {% endfor %}
-            </ul>
-        </div>
+    <div class="rightfloat">
+        <div class="w3-container" style="width: 30rem;">
+            <div class="w3-card">
+                <h1>login</h1>
+                <div class="container-section" style="width: 20rem;">
+                    <form action="{{url_for('login')}}" , method="POST">
+                        <div>
+                            {{ form.username(class='form-control',placeholder='username', autocomplete='off',autofocus=true)}}
+                            <ul>
+                                {% for error in form.username.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-        <div>
-            {{ form.password(class='form-control',placeholder='password')}}
-            <ul>
-                {% for error in form.password.errors %}
-                <li>{{error}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            {{ form.submit_botton(class='form-control',placeholder="Login")}}
-        </div>
-        <a>New User</a><a href="/signup"> Register here</a> {{ form.csrf_token }}
+                        <div>
+                            {{ form.password(class='form-control',placeholder='password')}}
+                            <ul>
+                                {% for error in form.password.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div>
+                            {{ form.submit_botton(class='form-control',placeholder="Login")}}
+                        </div>
+                        <a>New User</a><a href="/signup"> Register here</a> {{ form.csrf_token }}
 
-    </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 {% endblock %}

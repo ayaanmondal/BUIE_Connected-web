@@ -1,0 +1,73 @@
+<!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
+<style>
+    .rightfloat {
+        width: 85%;
+        margin-left: 40%;
+        margin-right: 30%;
+    }
+    
+    .right {
+        margin-left: 7%;
+    }
+    
+    img {
+        border-radius: 50%;
+    }
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(185, 49, 49, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+    
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+    
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 50%;
+        font-size: 18px;
+    }
+    
+    button:hover,
+    a:hover {
+        opacity: 0.7;
+    }
+</style>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+    <ul class=flashes>
+        {% for category, message in messages %}
+        <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <h2 style="text-align:center">Your Profile</h2>
+    <div class="card">
+        <img src="{{ profile_image }}" style="width:100%">
+        <h1>{{ current_user.username }}</h1>
+        <!--<p class="title">CEO & Founder, Example</p>
+        <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+        <p><button>Contact</button></p>-->
+        <p><button type="button" style="margin-left: 10px" class="btn btn-primary" onclick="window.location.href='/account'">Update</button></p>
+        <p><button type="button" style="margin-left: 10px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out</button></p>
+    </div>
+    {% endblock %}
+</body>
