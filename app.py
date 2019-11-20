@@ -164,10 +164,12 @@ def new_post():
         return redirect(url_for('chatroom'))
     return render_template('create_post.html',title='New post',form=post_form)
 
-@app.route("/post/<int:post_id>")
-def post(post_id):
+@app.route("/post/content/<int:id>/<int:post_id>/<int:content_id>")
+def post(id,post_id,content_id):
+    user = User.query.get_or_404(id)
     post = Post.query.get_or_404(post_id)
-    return render_template('chat.html', title=post.title,content=post.content, post=post)
+    content = Postcontent.query.get_or_404(content_id)
+    return render_template("post.html",user=user, post=post,content=content)
 
 
 if __name__ == "__main__":

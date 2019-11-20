@@ -17,12 +17,24 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <!--<script src='main.js'></script>-->
-    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endblock %}
 
 </head>
 <style>
     .navbar-brand {
         font-size: 30px;
+    }
+    
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Comic Sans MS", cursive, sans-serif;
     }
 </style>
 
@@ -31,7 +43,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar">
             <a class="navbar-brand" style="color: rgb(156, 223, 12)" href="/chatroom">
-                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="50" height="=70" class="d-inline-block align-top" style="color:   ghostwhite">BUIE CODERS
+                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="50" height="=70" class="d-inline-block align-top" style="color:   ghostwhite">BUIE Ninja
             </a>
 
             <!--<button type="button" style="margin-right: 5px" class="btn btn-info">About Us</button>-->
@@ -49,27 +61,19 @@
                         <a class="nav-link" style="color: white" href="/chatroom">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" style="color: white" href="post/new">New post <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" style="color: white" href='/post/new' ">New post <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link " style="color: white " href="# ">All Users</a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link " style="color: white " href="# ">About</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: white" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                                </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: white" href="/viewaccount">
-                            <h5><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h5>
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href="/viewaccount ">
+                            <h4><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h4>
                         </a>
                     </li>
 

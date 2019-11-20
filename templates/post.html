@@ -8,22 +8,29 @@
 </style>
 
 <body>
-    <article class="media content-section">
-        <img class="rounded-circle account-img" align='center' src="{{ profile_image }}">
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="#">{{ post.author.username }}</a>
-                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small> {% if post.author == current_user %}
-                <div>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=post.id) }}">Update</a>
-                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+    <div class="rightfloat">
+        <div class="w3-container" style="width: 55rem;">
+            <div class="w3-card">
+                <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank">Email:</a> <a>{{ user.email }}</a>
+                <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
+
+                <h5 class="card-title">
+                    <h2><a class="article-title" style="color:rgb(224, 135, 17);" href="#">{{ post.title }}</a></h2>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">
+                    <h6>
+                        <p class="article-content" style="color: rgb(7, 25, 58);">{{ content.content }}</p>
+                    </h6>
+                </p>
+                <div class="right">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
                 </div>
-                {% endif %}
             </div>
-            <h2 class="article-title">{{ post.title }}</h2>
-            <p class="article-content">{{ post.content }}</p>
         </div>
-    </article>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

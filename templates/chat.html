@@ -1,6 +1,4 @@
 {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
-<!--<<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">>-->
 <style>
     .rightfloat {
         margin-left: 30%;
@@ -8,7 +6,12 @@
     }
     
     .right {
-        margin-left: 50%;
+        margin-left: 60%;
+    }
+    
+    .left {
+        margin-left: 10%;
+        margin-right: 5%;
     }
     
     .avatar {
@@ -29,10 +32,10 @@
     {% endif %} {% endwith %} {% for post,cont in posts | reverse %} {% for user in users%} {% if post.user_id == user.id and cont.user_id == user.id %}
 
     <div class="rightfloat">
-        <div class="w3-container" style="width: 55rem;">
-            <div class="w3-card">
+        <div class="w3-container" style="width: 52rem;">
+            <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank">Email:</a> <a>{{ user.email }}</a>
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
                 <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
 
                 <h5 class="card-title">
@@ -41,13 +44,15 @@
                 <h6 class="card-subtitle mb-2 text-muted"></h6>
                 <p class="card-text">
                     <h6>
-                        <p class="article-content" style="color: rgb(7, 25, 58);">{{ cont.content }}</p>
+                        <p class="article-content" style="color: rgb(42, 84, 161);">{{ cont.content }}</p>
                     </h6>
                 </p>
                 <div class="right">
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
+                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
+
             </div>
         </div>
     </div>

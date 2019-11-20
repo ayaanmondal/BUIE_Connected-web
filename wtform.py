@@ -4,6 +4,7 @@ from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, 
 #from models import User
 from flask_wtf.file import FileField, FileAllowed
 from models import User, Post
+from flask_login import current_user
 
 def invalid_credentials(form,field):
 
@@ -65,14 +66,16 @@ class UpdateUserForm(FlaskForm):
     submit_botton = SubmitField('Update')
 
     def validate_username(self,username):
-        user_object = User.query.filter_by(username=username.data).first()
-        if user_object:
-            raise ValidationError("Usernamename already exists, Select a different username.")
+        if current_user.username != username.data: 
+            user_object = User.query.filter_by(username=username.data).first()
+            if user_object:
+                raise ValidationError("Usernamename already exists, Select a different username.")
 
     def validate_email(self,email):
-        user_object = User.query.filter_by(email=email.data).first()
-        if user_object:
-            raise ValidationError("Email id already exists, Select a different username.")
+        if current_user.email != email.data:
+            user_object = User.query.filter_by(email=email.data).first()
+            if user_object:
+                raise ValidationError("Email id already exists, Select a different username.")
 
 
 
