@@ -23,7 +23,7 @@ class RegistrationFrom(FlaskForm):
     message="Username must be between 4 and 25 characters")])
 
     email = StringField('username_lable',
-    validators=[InputRequired(message="email required"),Length(min=4,max=25,
+    validators=[InputRequired(message="email required"),Length(min=4,max=50,
     message="email not fitting"), Email()])
 
     password = PasswordField('password_lable',
@@ -58,8 +58,8 @@ class LoginForm(FlaskForm):
 
 
 class UpdateUserForm(FlaskForm):
-    email = StringField('Email', validators=[Email()])
     username = StringField('Username', validators=[])
+    email = StringField('Email', validators=[Email()])
     picture = FileField('Update Profile Picture',
                         validators=[FileAllowed(['jpg', 'png'])])
     submit_botton = SubmitField('Update')

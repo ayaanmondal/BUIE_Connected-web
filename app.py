@@ -1,5 +1,7 @@
 import os
 import secrets
+import psycopg2
+from sqlalchemy import update
 from PIL import Image
 from flask_blogging import BloggingEngine, SQLAStorage
 from datetime import datetime
@@ -85,27 +87,17 @@ def logout():
 def account():
     update_form = UpdateUserForm()
     if update_form.validate_on_submit():
-
         if update_form.picture.data:
             picture_file = save_picture(update_form.picture.data)
             current_user.profile_image = picture_file
-        new_id = int(current_user.id) 
-        new_username = update_form.username.data 
-        new_email = update_form.email.data
-        new_pic = current_user.profile_image
-        password=current_user.password
-        new_time=datetime.now()
-
-        #old_user=User.query.filter(User.id == current_user.id)
-        #old_user = User.query.get(current_user.id)
-        #deleteaccount(old_user)
-        db.session.query(User).filter(User.id==current_user.id).delete()
-        db.session.commit()
-
-        user= User(id=new_id,username=new_username,password=password,email=new_email,profile_image=new_pic,time_updated=new_time)
-        db.session.add(user)
-        db.session.commit()
         
+
+        db.session.query(User).filter_by(id=current_user.id).update({"username": update_form.username.data})
+        db.session.query(User).filter_by(id=current_user.id).update({"email": update_form.email.data})
+        db.session.query(User).filter_by(id=current_user.id).update({"profile_image": picture_file})
+        db.session.query(User).filter_by(id=current_user.id).update({"time_updated": datetime.now()})
+        db.session.commit()
+
         flash('User Account Updated!','success')
         #return redirect(url_for('logout'))
         return redirect(url_for('login'))
@@ -146,10 +138,10 @@ def save_picture(form_picture):
 @app.route('/chatroom',methods=['GET','POST'])
 @login_required
 def chatroom():
-    #users = User.query.all
+    users= User.query.all()
     posts = Post.query.all()
-    #contents = Postcontent.query.all()
-    return render_template('chat.html',posts=posts)
+    contents = Postcontent.query.all()
+    return render_template('chat.html',users=users,posts=zip(posts,contents),current_user=current_user)
 
 
 @app.route('/post/new',methods=['GET','POST'])
@@ -159,13 +151,13 @@ def new_post():
     if post_form.is_submitted():
         title = post_form.title.data
         content = post_form.content.data
-        new_post = Post(title=title,content=content,user_id=current_user.id)
+        new_post = Post(title=title,user_id=current_user.id)
         db.session.add(new_post)
         db.session.commit()
     
-        #new_content = Postcontent(content=content,user_id=current_user.id)
-        #db.session.add(new_content)
-        #db.session.commit()
+        new_content = Postcontent(content=content,user_id=current_user.id)
+        db.session.add(new_content)
+        db.session.commit()
 
         profile_image =url_for('static',filename='images/' + current_user.profile_image)
         flash('your post has been created!','success')

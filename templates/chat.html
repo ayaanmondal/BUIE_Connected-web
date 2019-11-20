@@ -26,19 +26,23 @@
         <li class="alert alert-{{ category }}">{{ message }}</li>
         {% endfor %}
     </ul>
-    {% endif %} {% endwith %} {% for post in posts | reverse %}
+    {% endif %} {% endwith %} {% for post,cont in posts | reverse %} {% for user in users%} {% if post.user_id == user.id and cont.user_id == user.id %}
 
     <div class="rightfloat">
         <div class="w3-container" style="width: 55rem;">
             <div class="w3-card">
-                <img class="avatar" src="{{ profile_image }}" <h4> {{current_user.username}} </h4>
+                <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank">Email:</a> <a>{{ user.email }}</a>
+                <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
 
                 <h5 class="card-title">
-                    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                    <h2><a class="article-title" style="color:rgb(224, 135, 17);" href="#">{{ post.title }}</a></h2>
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted"></h6>
                 <p class="card-text">
-                    <p class="article-content">{{ post.content }}</p>
+                    <h6>
+                        <p class="article-content" style="color: rgb(7, 25, 58);">{{ cont.content }}</p>
+                    </h6>
                 </p>
                 <div class="right">
                     <a href="#" class="card-link">Card link</a>
@@ -47,6 +51,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <!--<div class="w3-container" ;>
         <div class="w3-card-4" style="width:20%" margin-top: "25px">
@@ -63,8 +68,6 @@
             </footer>
         </div>
     </div>-->
-    {% endfor %} {% for user in users %}
-    <h2>{{ user.username }}</h2>
-    {% endfor %} {% endblock %}
+    {% endfor %}{% endfor %} {% endblock %}
 
 </body>
