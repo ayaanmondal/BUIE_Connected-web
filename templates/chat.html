@@ -1,8 +1,8 @@
 {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 30%;
-        margin-top: 3%;
+        margin-left: 20%;
+        margin-top: 0%;
     }
     
     .right {
@@ -20,6 +20,10 @@
         height: 50px;
         border-radius: 50%;
     }
+    
+    .whitespace {
+        white-space: pre-wrap;
+    }
 </style>
 
 <body>
@@ -29,28 +33,26 @@
         <li class="alert alert-{{ category }}">{{ message }}</li>
         {% endfor %}
     </ul>
-    {% endif %} {% endwith %} {% for post,cont in posts | reverse %} {% for user in users%} {% if post.user_id == user.id and cont.user_id == user.id %}
+    {% endif %} {% endwith %} {% for post in posts | reverse %} {% for user in users%} {% if post.user_id == user.id %}
 
     <div class="rightfloat">
-        <div class="w3-container" style="width: 52rem;">
+        <div class="w3-container" style="width: 70rem;">
             <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
                 <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
-                <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
+                <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
+                    <h3>{{ user.username }}</h3>
+                </a>
 
                 <h5 class="card-title">
-                    <h2><a class="article-title" style="color:rgb(224, 135, 17);" href="#">{{ post.title }}</a></h2>
+                    <h4><a class="article-title" style="color:rgb(230, 113, 18);" href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h4>
+                </h5 class="card-text">
+                <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text">
-                    <h6>
-                        <p class="article-content" style="color: rgb(42, 84, 161);">{{ cont.content }}</p>
-                    </h6>
-                </p>
                 <div class="right">
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
-                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}</small>
                 </div>
 
             </div>

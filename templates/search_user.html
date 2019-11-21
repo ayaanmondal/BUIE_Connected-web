@@ -63,22 +63,20 @@
         {% endfor %}
     </ul>
     {% endif %} {% endwith %}
-
     <div class="rightfloat">
         <div class="card-deck">
             <div class="w3-container" style="width: 25rem;">
                 <div class="w3-panel w3-card">
-                    <h2>Your Profile</h2>
-                    <img src="{{ profile_image }}" style="width:90%; margin-left:5%;">
+                    <h2>{{user.username}}'s Profile</h2>
+                    <img src="{{ url_for('static', filename='images/' + user.profile_image) }}" style="width:90%; margin-left:5%;">
                     <h1 style="margin-left: 30%;">{{ user.username }}</h1>
                     <h5 style="margin-left: 20%;">{{ user.email }}</h5>
-                    <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/account'">Update Account</button></p>
-                    <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out</button></p>
                 </div>
             </div>
+            <h1>hello</h1>
         </div>
     </div>
-    <h3 style="margin-left: 40%;">Your posts</h3>
+    <h3 style="margin-left: 40%;">{{user.username}}'s Posts</h3>
     {% for post in posts | reverse %} {%if post.user_id == user.id%}
     <div class="right">
         <div class="w3-panel w3-card" style="width: 70%;">
@@ -87,7 +85,7 @@
             </h5 class="card-text ">
             <p class="whitespace " style="color: rgb(42, 84, 161); ">{{ post.content }}</p>
             </h5>
-            <div class="link ">
+            <div class="link">
                 <a href="# " class="card-link ">Card link</a>
                 <a href="# " class="card-link ">Another link</a>
                 <small class="left " style="color: rgb(219, 42, 26); ">{{ post.date_posted }}</small>

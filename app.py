@@ -119,8 +119,9 @@ def view_account():
     username=current_user.username
     email=current_user.email
     profile_image =url_for('static',filename='images/' + current_user.profile_image)
-    return render_template('view_account.html',profile_image=profile_image,username=username,email=email)
-
+    posts = Post.query.all()
+    user = current_user
+    return render_template('view_account.html',posts=posts,user=user,profile_image=profile_image,username=username,email=email)
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -140,8 +141,13 @@ def save_picture(form_picture):
 def chatroom():
     users= User.query.all()
     posts = Post.query.all()
-    contents = Postcontent.query.all()
-    return render_template('chat.html',users=users,posts=zip(posts,contents),current_user=current_user)
+    return render_template('chat.html',users=users,posts=posts,current_user=current_user)
+
+@app.route('/allusers', methods=['GET', 'POST'])
+@login_required
+def allusers():
+    users = User.query.all()
+    return render_template('alluser.html',users=users,current_user=current_user)
 
 
 @app.route('/post/new',methods=['GET','POST'])
@@ -151,25 +157,33 @@ def new_post():
     if post_form.is_submitted():
         title = post_form.title.data
         content = post_form.content.data
-        new_post = Post(title=title,user_id=current_user.id)
+        new_post = Post(title=title,content=content,user_id=current_user.id)
         db.session.add(new_post)
         db.session.commit()
     
-        new_content = Postcontent(content=content,user_id=current_user.id)
-        db.session.add(new_content)
-        db.session.commit()
+        #new_content = Postcontent(content=content,user_id=current_user.id)
+        #db.session.add(new_content)
+        #db.session.commit()
 
         profile_image =url_for('static',filename='images/' + current_user.profile_image)
         flash('your post has been created!','success')
         return redirect(url_for('chatroom'))
     return render_template('create_post.html',title='New post',form=post_form)
 
-@app.route("/post/content/<int:id>/<int:post_id>/<int:content_id>")
-def post(id,post_id,content_id):
-    user = User.query.get_or_404(id)
+@app.route("/post/<int:post_id>")
+@login_required
+def post(post_id):
     post = Post.query.get_or_404(post_id)
-    content = Postcontent.query.get_or_404(content_id)
-    return render_template("post.html",user=user, post=post,content=content)
+    users = User.query.all()
+    return render_template("post.html",post=post,users = users)
+
+@app.route("/user/<int:user_id>")
+@login_required
+def searchuser(user_id):
+    user = User.query.get_or_404(user_id)
+    posts = Post.query.all()
+    return render_template("search_user.html",user=user,posts=posts)
+
 
 
 if __name__ == "__main__":

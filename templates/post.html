@@ -1,54 +1,51 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        width: 85%;
-        margin-left: 40%;
-        margin-right: 30%;
+        margin-left: 0%;
+    }
+    
+    .right {
+        margin-left: 80%;
+    }
+    
+    .left {
+        margin-left: 10%;
+        margin-right: 5%;
+    }
+    
+    .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    
+    .whitespace {
+        white-space: pre-wrap;
     }
 </style>
 
 <body>
+    {% for user in users %} {% if user.id == post.user_id %}
     <div class="rightfloat">
-        <div class="w3-container" style="width: 55rem;">
-            <div class="w3-card">
+        <div class="w3-container" style="width: 100%;">
+            <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank">Email:</a> <a>{{ user.email }}</a>
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
                 <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
 
                 <h5 class="card-title">
-                    <h2><a class="article-title" style="color:rgb(224, 135, 17);" href="#">{{ post.title }}</a></h2>
+                    <h4><a class="article-title" style="color:rgb(230, 113, 18);">{{ post.title }}</a></h4>
+                </h5 class="card-text">
+                <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text">
-                    <h6>
-                        <p class="article-content" style="color: rgb(7, 25, 58);">{{ content.content }}</p>
-                    </h6>
-                </p>
                 <div class="right">
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
+                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}</small>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
-                        <input class="btn btn-danger" type="submit" value="Delete">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endblock %}
+    {% endif %} {% endfor %} {% endblock %}
 </body>
