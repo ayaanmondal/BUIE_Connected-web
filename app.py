@@ -3,9 +3,8 @@ import secrets
 import psycopg2
 from sqlalchemy import update
 from PIL import Image
-from flask_blogging import BloggingEngine, SQLAStorage
 from datetime import datetime
-from flask import Flask, render_template, json, request,url_for,redirect,flash
+from flask import Flask, render_template, json, request,url_for,redirect,flash,abort
 from flask_login import LoginManager,login_user,current_user,login_required,logout_user
 from wtform import *
 from models import *
@@ -176,6 +175,47 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     users = User.query.all()
     return render_template("post.html",post=post,users = users)
+
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.user_id != current_user.id:
+        abort(403)
+    update_form = PostForm()
+    if update_form.validate_on_submit():
+        db.session.query(Post).filter_by(post_id=post.post_id).update({"title": update_form.title.data})
+        db.session.query(Post).filter_by(post_id=post.post_id).update({"content": update_form.content.data})
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(url_for('post',post_id=post.post_id))
+
+    elif request.method == 'GET':
+        update_form.title.data= post.title
+        update_form.content.data= post.content
+        return render_template('update_post.html',post=post,form=update_form)
+
+@app.route("/delete/<int:post_id>")
+@login_required
+def deletepost(post_id):
+    post = Post.query.get_or_404(post_id)
+    users = User.query.all()
+    if post.user_id != current_user.id:
+        abort(403)
+        
+    return render_template('delete_post.html',post=post,users=users)
+
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id):
+    delete_post = Post.query.get_or_404(post_id)
+    if delete_post.user_id != current_user.id:
+        abort(403)
+
+    db.session.query(Post).filter_by(post_id=delete_post.post_id).delete()
+    db.session.commit()
+    flash('Your post has been Deleted!', 'success')
+    return redirect('chatroom')
 
 @app.route("/user/<int:user_id>")
 @login_required

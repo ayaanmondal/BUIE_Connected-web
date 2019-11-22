@@ -1,7 +1,7 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 0%;
+        margin-left: 2%;
     }
     
     .right {
@@ -17,7 +17,7 @@
         vertical-align: left;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
+        border-radius: 10%;
     }
     
     .whitespace {
@@ -27,19 +27,26 @@
 
 <body>
     {% for user in users%}
-    <div class="rightfloat">
-        <div class="w3-container" style="width: 25rem;">
-            <div class="w3-panel w3-card">
-                <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a style="margin-left: 10%;">
-                    <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
-                        <h3>{{ user.username }}</h3>
-                    </a>
-                    <h5 style="margin-left: 0%;">{{ user.email }}</h5>
-                </a>
+    <div class="row">
+        <div class="col">
+            <div class="rightfloat">
+                <div class="w3-container" style="width: 20rem;">
+                    <div class="w3-panel w3-card">
+                        <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                        <a style="margin-left: 10%;">
+                            <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
+                                <h3>{{ user.username }}</h3>
+                            </a>
+                            <h5 style="margin-left: 0%;">{{ user.email }}</h5>
+                        </a>
+
+                    </div>
+                </div>
 
             </div>
+
         </div>
+        {%endfor%}
     </div>
-    {%endfor%} {%endblock%}
+    {%endblock%}
 </body>

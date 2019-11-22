@@ -39,7 +39,7 @@
         <div class="w3-container" style="width: 70rem;">
             <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:20px;">Email:</a> <a style="font-size: 15px;">{{ user.email }}</a>
                 <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
                     <h3>{{ user.username }}</h3>
                 </a>

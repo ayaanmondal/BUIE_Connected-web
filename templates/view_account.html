@@ -2,21 +2,23 @@
 <style>
     .rightfloat {
         margin-left: 0%;
-        display: grid;
+        margin-right: 0%;
     }
     
     .right {
-        margin-left: 20%;
+        margin-left: 0%;
         display: grid;
     }
     
     .link {
-        margin-left: 70%;
+        margin-left: 80%;
+        margin-top: 2%;
     }
     
     .left {
-        margin-left: 10%;
+        margin-left: 0%;
         margin-right: 5%;
+        font-size: 20px;
     }
     
     img {
@@ -63,36 +65,46 @@
         {% endfor %}
     </ul>
     {% endif %} {% endwith %}
-
-    <div class="rightfloat">
-        <div class="card-deck">
-            <div class="w3-container" style="width: 25rem;">
-                <div class="w3-panel w3-card">
-                    <h2>Your Profile</h2>
-                    <img src="{{ profile_image }}" style="width:90%; margin-left:5%;">
-                    <h1 style="margin-left: 30%;">{{ user.username }}</h1>
-                    <h5 style="margin-left: 20%;">{{ user.email }}</h5>
-                    <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/account'">Update Account</button></p>
-                    <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out</button></p>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="rightfloat">
+                <div class="card-deck">
+                    <div class="w3-container" style="width: 25rem;">
+                        <div class="w3-panel w3-card">
+                            <h2>Your Profile</h2>
+                            <img src="{{ profile_image }}" style="width:90%; margin-left:5%;">
+                            <h1 style="margin-left: 30%;">{{ user.username }}</h1>
+                            <h5 style="margin-left: 20%;">{{ user.email }}</h5>
+                            <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/account'">Update Account</button></p>
+                            <p><button type="button" style="margin-left: 50px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out</button></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <h3 style="margin-left: 40%;">Your posts</h3>
-    {% for post in posts | reverse %} {%if post.user_id == user.id%}
-    <div class="right">
-        <div class="w3-panel w3-card" style="width: 70%;">
-            <h5 class="card-title">
-                <h4><a class=" article-title " style="color:rgb(230, 113, 18); " href="{{url_for('post',post_id=post.post_id)}}">{{ post.title }}</a></h4>
-            </h5 class="card-text ">
-            <p class="whitespace " style="color: rgb(42, 84, 161); ">{{ post.content }}</p>
-            </h5>
-            <div class="link ">
-                <a href="# " class="card-link ">Card link</a>
-                <a href="# " class="card-link ">Another link</a>
-                <small class="left " style="color: rgb(219, 42, 26); ">{{ post.date_posted }}</small>
+        <div class="col-sm-7">
+            <h3 style="margin-left: 0%;">Your posts</h3>
+            {% for post in posts | reverse %} {%if post.user_id == user.id%}
+            <div class="right">
+                <div class="w3-panel w3-card" style="width: 100%;">
+                    <h5 class="card-title">
+                        <h4><a class=" article-title " style="color:rgb(230, 113, 18); " href="{{url_for('post',post_id=post.post_id)}}">{{ post.title }}</a></h4>
+                    </h5 class="card-text ">
+                    <p class="whitespace " style="color: rgb(42, 84, 161); ">{{ post.content }}</p>
+                    </h5>
+                    <div class="link">
+                        <a href="{{url_for('update_post',post_id=post.post_id)}}">
+                            <p><button type="button" style="size:5px;" class="btn btn-success">Edit Post</button></p>
+                        </a>
+                        <a href="{{url_for('deletepost',post_id=post.post_id)}}">
+                            <button type="button" class="btn btn-danger">Delete</button></a>
+                        </a>
+                    </div>
+                    <small class="left" style="color: rgb(219, 42, 26); ">{{ post.date_posted }}</small>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
-    {%endif%} {%endfor%} {% endblock %}
+    {% endblock %}
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 0%;
+        margin-left: 26%;
     }
     
     .right {
@@ -9,8 +9,9 @@
     }
     
     .left {
-        margin-left: 10%;
+        margin-left: 50%;
         margin-right: 5%;
+        font-size: 100%;
     }
     
     .avatar {
@@ -23,12 +24,19 @@
     .whitespace {
         white-space: pre-wrap;
     }
+    
+    .side {
+        margin-left: 12%;
+    }
 </style>
 
 <body>
+    <div class="" style="margin-left: 45%;">
+        <h4>Delete this post</h4>
+    </div>
     {% for user in users %} {% if user.id == post.user_id %}
     <div class="rightfloat">
-        <div class="w3-container" style="width: 100%;">
+        <div class="w3-container" style="width: 70%;">
             <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
                 <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
@@ -42,12 +50,31 @@
                 <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
                 <div class="right">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
                     <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}</small>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="rightfloat">
+        <div class="w3-container">
+            <h2 style="margin-left: 27%;">Warning</h2>
+            <div class="side">
+                <div class="w3-card-4" style="width:50%">
+                    <header class="w3-container w3-light-grey">
+                        <i class='fas fa-bullhorn' style='font-size:36px; margin-left '>Are you absolutely sure?</i>
+                    </header>
+                    <div class="w3-container">
+                        <h4><a class="article-title" style="color:red; margin-top: 5%;"><i class='fas fa-bell' style='font-size:24px'></i>Unexpected bad things will happen if you don’t read this!</a>
+                            <p style="margin-top: 5%;">This action cannot be undone. This will permanently delete this Post and all it's components.</p><br>
+                    </div>
+                    <i class='fas fa-anchor' style='font-size:80px; margin-left:42%;'></i>
+                    <form action="{{ url_for('delete_post',post_id=post.post_id)}}" method="POST">
+                        <input class="w3-button w3-block w3-red" size="10px" type="submit" value="Ok sure, I want to Delete this post.">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     {% endif %} {% endfor %} {% endblock %}
 </body>
