@@ -45,20 +45,23 @@ user_id INT,
 date_posted DATE,
 FOREIGN KEY (user_id) REFERENCES buieuser3 (id)
 );"""
-#class Postcontent(db.Model):
-    #__tablename__ = "buiecontent"
-    #content_id = db.Column(db.Integer, primary_key=True)
-    #content = db.Column(db.Text, nullable=False)
-    #user_id = db.Column(db.Integer, nullable=False)
-    #date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+class Answer(db.Model):
+    __tablename__ = "comment1"
+    answer_id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    post_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    #def __repr__(self):
-        #return f"Post('{self.content}', '{self.date_posted}')"
+    def __repr__(self):
+        return f"Answer('{self.content}', '{self.date_posted}')"
     
-"""CREATE TABLE buiecontent(
-content_id SERIAL PRIMARY KEY,
+"""CREATE TABLE comment1(
+answer_id SERIAL PRIMARY KEY,
 content TEXT NOT NULL,
+post_id INT,
 user_id INT,
 date_posted DATE,
-FOREIGN KEY (user_id) REFERENCES buieuser2 (id)
+FOREIGN KEY (post_id) REFERENCES buiepost1 (post_id),
+FOREIGN KEY (user_id) REFERENCES buieuser3 (id)
 );"""

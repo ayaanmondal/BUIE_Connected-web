@@ -5,11 +5,18 @@
     }
     
     .right {
-        margin-left: 80%;
+        margin-left: 40%;
+    }
+    
+    .center {
+        width: 55%;
+        height: 50;
+        margin-left: 25%;
+        margin-bottom: 5%;
     }
     
     .left {
-        margin-left: 10%;
+        margin-left: 60%;
         margin-right: 5%;
     }
     
@@ -26,7 +33,13 @@
 </style>
 
 <body>
-    {% for user in users %} {% if user.id == post.user_id %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+    <ul class=flashes>
+        {% for category, message in messages %}
+        <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% for user in users %} {% if user.id == post.user_id %}
     <div class="rightfloat">
         <div class="w3-container" style="width: 100%;">
             <div class="w3-panel w3-card">
@@ -48,6 +61,49 @@
                 </div>
             </div>
         </div>
+
+        {% for answer in answers %} {% if answer.post_id == post.post_id%}{% for user in users %} {% if answer.user_id == user.id %}
+
+        <div class="right">
+            <div class="w3-container" style="width: 70rem;">
+                <div class="w3-panel w3-card">
+
+                    <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                    <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:20px;">Email:</a> <a style="font-size: 15px;">{{ user.email }}</a>
+                    <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
+                        <h3>{{ user.username }}</h3>
+                    </a>
+
+                    </h5 class="card-text">
+                    <p class="whitespace" style="color: rgb(42, 84, 161);">{{ answer.content }}</p>
+                    </h5>
+                    <div class="right">
+                        <small class="left" style="color: rgb(219, 42, 26);">{{ answer.date_posted }}</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}{% endfor %} {% endif %} {% endfor %}
+
+
     </div>
-    {% endif %} {% endfor %} {% endblock %}
+    {% endif %} {% endfor %}
+    <div class="center">
+        <h1>Post Your Answer !</h1>
+        <form action="{{ url_for('post',post_id=post.post_id)}}" method="POST">
+            <div>
+                {{ form.content(class='form-control',placeholder='Description', style="height:100px")}}
+                <ul>
+                    {% for error in form.content.errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <input class="w3-button w3-block w3-green" size="10px" type="submit" value="Post Answer">
+            </div>
+        </form>
+    </div>
+    {% endblock %}
 </body>

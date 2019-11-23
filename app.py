@@ -159,22 +159,30 @@ def new_post():
         new_post = Post(title=title,content=content,user_id=current_user.id)
         db.session.add(new_post)
         db.session.commit()
-    
-        #new_content = Postcontent(content=content,user_id=current_user.id)
-        #db.session.add(new_content)
-        #db.session.commit()
 
         profile_image =url_for('static',filename='images/' + current_user.profile_image)
         flash('your post has been created!','success')
         return redirect(url_for('chatroom'))
     return render_template('create_post.html',title='New post',form=post_form)
 
-@app.route("/post/<int:post_id>")
+@app.route("/post/<int:post_id>",methods=['GET','POST'])
 @login_required
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     users = User.query.all()
-    return render_template("post.html",post=post,users = users)
+    answer_form = AnswerForm()
+    if answer_form.is_submitted():
+        content = answer_form.content.data
+        new_answer = Answer(content=content,post_id=post_id,user_id=current_user.id)
+        db.session.add(new_answer)
+        db.session.commit()
+
+        profile_image =url_for('static',filename='images/' + current_user.profile_image)
+        flash('your Answer has been posted successfully!','success')
+        return redirect(url_for('post',post_id=post.post_id))
+
+    answers=Answer.query.all()
+    return render_template("post.html",post=post,users = users,title='New post',form=answer_form,answers=answers)
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -202,7 +210,7 @@ def deletepost(post_id):
     users = User.query.all()
     if post.user_id != current_user.id:
         abort(403)
-        
+
     return render_template('delete_post.html',post=post,users=users)
 
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
@@ -222,6 +230,8 @@ def delete_post(post_id):
 def searchuser(user_id):
     user = User.query.get_or_404(user_id)
     posts = Post.query.all()
+    if user.id == current_user.id:
+        return redirect('viewaccount')
     return render_template("search_user.html",user=user,posts=posts)
 
 

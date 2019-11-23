@@ -83,3 +83,8 @@ class PostForm(FlaskForm):
     title = StringField('Title',validators=[InputRequired(message="Title required")])
     content = TextAreaField('Content',validators=[InputRequired(message="Description required")])
     submit_botton = SubmitField('Post')
+
+
+class AnswerForm(FlaskForm):
+    content = TextAreaField('Answer',validators=[InputRequired(message="Description required")])
+    submit_botton = SubmitField('Post')

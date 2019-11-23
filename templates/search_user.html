@@ -6,7 +6,7 @@
     }
     
     .right {
-        margin-left: 20%;
+        margin-left: 10%;
         display: grid;
     }
     
@@ -89,12 +89,12 @@
             <div class="right">
                 <div class="w3-panel w3-card" style="width: 100%;">
                     <h5 class="card-title">
-                        <h4><a class=" article-title " style="color:rgb(230, 113, 18); " href="{{url_for('post',post_id=post.post_id)}}">{{ post.title }}</a></h4>
+                        <h4><a class=" article-title " style="color:rgb(230, 96, 18); " href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h4>
                     </h5 class="card-text ">
                     <p class="whitespace " style="color: rgb(42, 84, 161); ">{{ post.content }}</p>
                     </h5>
                     <div class="link">
-                        <small class="left " style="color: rgb(219, 42, 26); ">{{ post.date_posted }}</small>
+                        <small class="left " style="color: rgb(219, 42, 26); font-size:90%">{{ post.date_posted }}</small>
                     </div>
                 </div>
             </div>
