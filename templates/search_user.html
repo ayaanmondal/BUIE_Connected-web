@@ -16,7 +16,7 @@
     }
     
     .left {
-        margin-left: 10%;
+        margin-left: 5%;
         margin-right: 5%;
     }
     
@@ -83,9 +83,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-7">
-            <h3 style="margin-left: 40%;">{{user.username}}'s Posts</h3>
-            {% for post in posts | reverse %} {%if post.user_id == user.id%}
+        <div class="col-sm-8">
+            <h3 style="margin-left: 40%;">{{user.username}}'s Posts <i class='fas fa-bullhorn' style='font-size:24px'></i></h3> {% for post in posts | reverse %} {%if post.user_id == user.id%}
             <div class="right">
                 <div class="w3-panel w3-card" style="width: 100%;">
                     <h5 class="card-title">

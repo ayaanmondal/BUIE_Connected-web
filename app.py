@@ -6,6 +6,7 @@ from PIL import Image
 from datetime import datetime
 from flask import Flask, render_template, json, request,url_for,redirect,flash,abort
 from flask_login import LoginManager,login_user,current_user,login_required,logout_user
+from flask_paginate import Pagination, get_page_parameter
 from wtform import *
 from models import *
 
@@ -139,7 +140,8 @@ def save_picture(form_picture):
 @login_required
 def chatroom():
     users= User.query.all()
-    posts = Post.query.all()
+    page = request.args.get('page',1, type=int)
+    posts = Post.query.paginate(page=page,per_page=6)
     return render_template('chat.html',users=users,posts=posts,current_user=current_user)
 
 @app.route('/allusers', methods=['GET', 'POST'])
@@ -220,8 +222,12 @@ def delete_post(post_id):
     if delete_post.user_id != current_user.id:
         abort(403)
 
+    db.session.query(Answer).filter_by(post_id=delete_post.post_id).delete()
+    db.session.commit()
     db.session.query(Post).filter_by(post_id=delete_post.post_id).delete()
     db.session.commit()
+    
+   
     flash('Your post has been Deleted!', 'success')
     return redirect('chatroom')
 

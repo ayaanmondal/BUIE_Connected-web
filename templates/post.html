@@ -6,6 +6,7 @@
     
     .right {
         margin-left: 40%;
+        margin-right: 5%;
     }
     
     .center {
@@ -16,8 +17,15 @@
     }
     
     .left {
-        margin-left: 60%;
+        margin-left: 72%;
         margin-right: 5%;
+        font-size: 15px;
+    }
+    
+    .leftll {
+        margin-left: 82%;
+        margin-right: 2%;
+        font-size: 15px;
     }
     
     .avatar {
@@ -55,9 +63,7 @@
                 <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
                 <div class="right">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}</small>
+                    <small class="leftll" style="color: rgb(219, 42, 26);">Date:{{ post.date_posted }}:</small>
                 </div>
             </div>
         </div>
@@ -78,7 +84,7 @@
                     <p class="whitespace" style="color: rgb(42, 84, 161);">{{ answer.content }}</p>
                     </h5>
                     <div class="right">
-                        <small class="left" style="color: rgb(219, 42, 26);">{{ answer.date_posted }}</small>
+                        <small class="left" style="color: rgb(219, 42, 26);">Date:{{ answer.date_posted }}:</small>
                     </div>
 
                 </div>
@@ -90,7 +96,7 @@
     </div>
     {% endif %} {% endfor %}
     <div class="center">
-        <h1>Post Your Answer !</h1>
+        <h1>Leave Your Answer !<i class='far fa-grin-alt' style='font-size:36px'></i></h1>
         <form action="{{ url_for('post',post_id=post.post_id)}}" method="POST">
             <div>
                 {{ form.content(class='form-control',placeholder='Description', style="height:100px")}}

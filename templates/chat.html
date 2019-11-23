@@ -2,15 +2,16 @@
 <style>
     .rightfloat {
         margin-left: 20%;
-        margin-top: 0%;
     }
     
     .right {
-        margin-left: 60%;
+        margin-left: 70%;
+        font-size: 20px;
+        margin-right: 2%;
     }
     
     .left {
-        margin-left: 10%;
+        margin-left: 0%;
         margin-right: 5%;
     }
     
@@ -24,6 +25,23 @@
     .whitespace {
         white-space: pre-wrap;
     }
+    
+    .pagination-page-info {
+        padding: .6em;
+        padding-left: 0;
+        width: 40em;
+        margin: .5em;
+        margin-left: 0;
+        font-size: 12px;
+    }
+    
+    .pagination-page-info b {
+        color: black;
+        background: #6aa6ed;
+        padding-left: 2px;
+        padding: .1em .25em;
+        font-size: 150%;
+    }
 </style>
 
 <body>
@@ -33,8 +51,14 @@
         <li class="alert alert-{{ category }}">{{ message }}</li>
         {% endfor %}
     </ul>
-    {% endif %} {% endwith %} {% for post in posts | reverse %} {% for user in users%} {% if post.user_id == user.id %}
+    {% endif %} {% endwith %}
+    <div class="rightfloat">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,left_current=1,right_current=2) | reverse %} {% if page_num %} {% if posts.page == page_num%}
+        <a class="btn btn-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% endif %}{% else %} ... {% endif %}{% endfor %}
+    </div>
 
+    {% for post in posts.items | reverse %} {% for user in users%} {% if post.user_id == user.id %}
     <div class="rightfloat">
         <div class="w3-container" style="width: 70rem;">
             <div class="w3-panel w3-card">
@@ -50,31 +74,15 @@
                 <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
                 <div class="right">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}</small>
+                    <a href="{{url_for('post',post_id=post.post_id)}}">
+                        <button type="button" class="btn btn-success"">Leave Your Answers</button>
+                    </a>
+                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
                 </div>
 
             </div>
         </div>
     </div>
-    {% endif %}
-
-    <!--<div class="w3-container" ;>
-        <div class="w3-card-4" style="width:20%" margin-top: "25px">
-
-
-            <header class="w3-container w3-blue">
-                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-                <img src="{{ current_user.profile_image }}" alt="" class="w3-left w3-circle w3-margin-right" style="width:60px">
-            </header>
-            <div class="w3-container">
-                <p class="article-content">{{ post.content }}</p>
-            </div>
-            <footer class="w3-container w3-blue">
-            </footer>
-        </div>
-    </div>-->
-    {% endfor %}{% endfor %} {% endblock %}
+    {% endif %} {% endfor %}{% endfor %} {% endblock %}
 
 </body>
