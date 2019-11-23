@@ -15,19 +15,11 @@
         {% endfor %} {% endif %} {% endwith %}
     </ul>
     <div class="rightfloat">
-        <h1>Ask Your Query !</h1>
-        <form action="{{ url_for('new_post')}}" method="POST">
+        <h1>Please Give a Better Solution !! !</h1>
+        <form action="{{ url_for('update_answer',answer_id=answer.answer_id)}}" method="POST">
+            {{ form.hidden_tag() }}
             <div>
-                {{ form.title(class='form-control',placeholder='Title', style=" font-size:30px; height:100px")}}
-                <ul>
-                    {% for error in form.title.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div>
-                {{ form.content(class='form-control',placeholder='Description', style=" font-size:30px; height:300px")}}
+                {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:30px; height:100px")}}
                 <ul>
                     {% for error in form.content.errors %}
                     <li>{{error}}</li>
@@ -35,9 +27,10 @@
                 </ul>
             </div>
             <div>
-                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Post my query">
+                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update Answer">
             </div>
         </form>
+        <a></a>
     </div>
 </body>
 {% endblock %}

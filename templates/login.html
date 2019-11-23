@@ -15,7 +15,7 @@
                 <div class="container-section" style="width: 20rem;">
                     <form action="{{url_for('login')}}" , method="POST">
                         <div>
-                            {{ form.username(class='form-control',placeholder='username', autocomplete='off',autofocus=true)}}
+                            {{ form.username(class='form-control',placeholder='username', autocomplete='off',autofocus=true,style=" font-size:20px; height:50px; width:150%;")}}
                             <ul>
                                 {% for error in form.username.errors %}
                                 <li>{{error}}</li>
@@ -24,7 +24,7 @@
                         </div>
 
                         <div>
-                            {{ form.password(class='form-control',placeholder='password')}}
+                            {{ form.password(class='form-control',placeholder='password',style=" font-size:20px; height:50px; width:150%;")}}
                             <ul>
                                 {% for error in form.password.errors %}
                                 <li>{{error}}</li>
@@ -32,9 +32,9 @@
                             </ul>
                         </div>
                         <div>
-                            {{ form.submit_botton(class='form-control',placeholder="Login")}}
+                            {{ form.submit_botton(class='form-control',placeholder="Login",style=" font-size:20px; height:50px; width:150%;")}}
                         </div>
-                        <a>New User</a><a href="/signup"> Register here</a> {{ form.csrf_token }}
+                        <a style="font-size:20px;">New User</a><a href="/signup" style="font-size:20px;"> Register here</a> {{ form.csrf_token }}
 
                     </form>
                 </div>

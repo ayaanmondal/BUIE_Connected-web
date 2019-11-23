@@ -1,7 +1,8 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 0%;
+        margin-left: 2%;
+        margin-right: 2%;
     }
     
     .right {
@@ -23,9 +24,14 @@
     }
     
     .leftll {
-        margin-left: 82%;
+        margin-left: 86%;
         margin-right: 2%;
         font-size: 15px;
+    }
+    
+    .link {
+        margin-left: 80%;
+        margin-top: 2%;
     }
     
     .avatar {
@@ -37,6 +43,7 @@
     
     .whitespace {
         white-space: pre-wrap;
+        font-size: 30px;
     }
 </style>
 
@@ -52,13 +59,13 @@
         <div class="w3-container" style="width: 100%;">
             <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);">Email:</a> <a>{{ user.email }}</a>
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161); font-size:25px;">Email:</a> <a style="font-size: 23px;">{{ user.email }}</a>
                 <a href="{{url_for('searchuser',user_id=user.id)}}">
-                    <h4 style="color:rgb(2, 97, 65);">{{ user.username }} </h4>
+                    <h2 style="color:rgb(2, 97, 65);">{{ user.username }} </h2>
                 </a>
 
                 <h5 class="card-title">
-                    <h4><a class="article-title" style="color:rgb(230, 113, 18);">{{ post.title }}</a></h4>
+                    <h1><a class="article-title" style="color:rgb(230, 113, 18);">{{ post.title }}</a></h1>
                 </h5 class="card-text">
                 <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
                 </h5>
@@ -71,20 +78,28 @@
         {% for answer in answers %} {% if answer.post_id == post.post_id%}{% for user in users %} {% if answer.user_id == user.id %}
 
         <div class="right">
-            <div class="w3-container" style="width: 70rem;">
+            <div class="w3-container" style="width: 100rem;">
                 <div class="w3-panel w3-card">
 
                     <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
                     <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:20px;">Email:</a> <a style="font-size: 15px;">{{ user.email }}</a>
                     <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
-                        <h3>{{ user.username }}</h3>
+                        <h2>{{ user.username }}</h2>
                     </a>
 
                     </h5 class="card-text">
                     <p class="whitespace" style="color: rgb(42, 84, 161);">{{ answer.content }}</p>
                     </h5>
-                    <div class="right">
-                        <small class="left" style="color: rgb(219, 42, 26);">Date:{{ answer.date_posted }}:</small>
+                    <div class="link">
+                        {% if current_user.id == answer.user_id %}
+                        <a href="{{url_for('update_answer',answer_id=answer.answer_id)}}">
+                            <button type="button" class="btn btn-success" style="margin-left: 10px;"><i class='fas fa-pen' style='font-size:20px;color:rgb(204, 230, 204)'></i>Edit</button>
+                        </a>
+                        <a href="{{url_for('deleteanswer',answer_id=answer.answer_id)}}">
+                            <button type="button" class="btn btn-danger" style="margin-left: 10px;"><i class="fa fa-trash" style="font-size:20px"></i>Delete</button>
+                        </a>
+                        {%endif%}
+                        <small style="color: rgb(219, 42, 26); font-size:20px;">Date:{{ answer.date_posted }}:</small>
                     </div>
 
                 </div>
@@ -99,7 +114,7 @@
         <h1>Leave Your Answer !<i class='far fa-grin-alt' style='font-size:36px'></i></h1>
         <form action="{{ url_for('post',post_id=post.post_id)}}" method="POST">
             <div>
-                {{ form.content(class='form-control',placeholder='Description', style="height:100px")}}
+                {{ form.content(class='form-control',placeholder='Description', style="font-size:30px; height:200px;")}}
                 <ul>
                     {% for error in form.content.errors %}
                     <li>{{error}}</li>
@@ -107,7 +122,7 @@
                 </ul>
             </div>
             <div>
-                <input class="w3-button w3-block w3-green" size="10px" type="submit" value="Post Answer">
+                <input class="w3-button w3-block w3-green" type="submit" style="font-size: 30px;" value="Post Answer">
             </div>
         </form>
     </div>

@@ -19,7 +19,7 @@
         <form action="{{ url_for('update_post',post_id=post.post_id)}}" method="POST">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{form.title.label(class='form-group')}}{{ form.title(class='form-control', style="height:100px")}}
+                {{form.title.label(class='form-group')}}{{ form.title(class='form-control', style=" font-size:30px; height:100px")}}
                 <ul>
                     {% for error in form.title.errors %}
                     <li>{{error}}</li>
@@ -28,7 +28,7 @@
             </div>
 
             <div>
-                {{form.content.label(class='form-group')}}{{form.content(class='form-control', style="height:300px")}}
+                {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:30px; height:100px")}}
                 <ul>
                     {% for error in form.content.errors %}
                     <li>{{error}}</li>
@@ -36,7 +36,7 @@
                 </ul>
             </div>
             <div>
-                <input class="w3-button w3-block w3-green" size="10px" type="submit" value="Update Post">
+                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update Post">
             </div>
         </form>
         <a></a>

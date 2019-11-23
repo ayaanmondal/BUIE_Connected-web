@@ -58,19 +58,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" style="color: white" href="/chatroom">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" style="color: white" href="/chatroom">
+                            <h4>Home</h4><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" style="color: white" href='/post/new' ">New post <span class="sr-only ">(current)</span></a>
+                        <a class="nav-link" style="color: white" href='/allposts' "><h4>New posts</h4><span class="sr-only ">(current)</span></a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href="/allusers ">All Users</a>
+                        <a class="nav-link " style="color: white " href="/allusers "><h4>All Users</h4></a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href="# ">About</a>
+                        <a class="nav-link " style="color: white " href="# "><h4>About</h4></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto ">
+                        <button type="button " class="btn btn-success "onclick="window.location.href='/post/new' "><h5><i class='fas fa-user-graduate' style='font-size:30px;color:rgb(14, 109, 14)'></i>Ask your Query</h5></button>
                     <li class="nav-item ">
                         <a class="nav-link " style="color: white " href="/viewaccount ">
                             <h4><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h4>

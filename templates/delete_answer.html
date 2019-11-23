@@ -32,9 +32,9 @@
 
 <body>
     <div class="" style="margin-left: 45%;">
-        <h2 style="color: rgb(184, 12, 69);">Delete this post !!</h2>
+        <h2 style="color: rgb(184, 12, 69);">Delete this Answer !!</h2>
     </div>
-    {% for user in users %} {% if user.id == post.user_id %}
+    {% for user in users %} {% if user.id == answer.user_id %}
     <div class="rightfloat">
         <div class="w3-container" style="width: 70%;">
             <div class="w3-panel w3-card">
@@ -43,14 +43,10 @@
                 <a href="{{url_for('searchuser',user_id=user.id)}}">
                     <h2 style="color:rgb(2, 97, 65);">{{ user.username }} </h2>
                 </a>
-
-                <h5 class="card-title">
-                    <h3><a class="article-title" style="color:rgb(230, 113, 18);">{{ post.title }}</a></h3>
-                </h5 class="card-text">
-                <p class="whitespace" style="color: rgb(42, 84, 161); font-size:20px">{{ post.content }}</p>
+                <p class="whitespace" style="color: rgb(42, 84, 161); font-size:20px">{{ answer.content }}</p>
                 </h5>
                 <div class="right">
-                    <small class="left" style="color: rgb(219, 42, 26);font-size:20px">{{ post.date_posted }}</small>
+                    <small class="left" style="color: rgb(219, 42, 26);font-size:20px">{{ answer.date_posted }}</small>
                 </div>
             </div>
         </div>
@@ -65,11 +61,11 @@
                     </header>
                     <div class="w3-container">
                         <h4><a class="article-title" style="color:red; margin-top: 5%;"><i class='fas fa-bell' style='font-size:24px'></i>Unexpected bad things will happen if you don’t read this!</a>
-                            <p style="margin-top: 5%;">This action cannot be undone. This will permanently delete this Post and all of it's components.</p><br>
+                            <p style="margin-top: 5%;">This action cannot be undone. This will permanently delete Your Answer .</p><br>
                     </div>
                     <i class='fas fa-anchor' style='font-size:80px; margin-left:42%;'></i>
-                    <form action="{{ url_for('delete_post',post_id=post.post_id)}}" method="POST">
-                        <input class="w3-button w3-block w3-red" size="10px" type="submit" value="Ok sure, I want to Delete this post.">
+                    <form action="{{ url_for('delete_answer',answer_id=answer.answer_id)}}" method="POST">
+                        <input class="w3-button w3-block w3-red" size="10px" type="submit" value="Ok sure, I want to Delete my Answer.">
                     </form>
                 </div>
             </div>

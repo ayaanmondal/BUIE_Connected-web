@@ -4,13 +4,8 @@
         margin-left: 20%;
     }
     
-    .rightfloatt {
-        margin-left: 20%;
-        margin-top: 1%;
-    }
-    
     .right {
-        margin-left: 67%;
+        margin-left: 68%;
         font-size: 20px;
         margin-right: 2%;
     }
@@ -57,19 +52,12 @@
         <li class="alert alert-{{ category }}">{{ message }}</li>
         {% endfor %}
     </ul>
-    {% endif %} {% endwith %}
-    <div class="rightfloatt">
-        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,left_current=1,right_current=2) | reverse %} {% if page_num %} {% if posts.page == page_num%}
-        <a class="btn btn-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% else %}
-        <a class="btn btn-outline-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% endif %}{% else %} ... {% endif %}{% endfor %}
-    </div>
-
-    {% for post in posts.items | reverse %} {% for user in users%} {% if post.user_id == user.id %}
+    {% endif %} {% endwith %} {% for post in posts | reverse %} {% for user in users%} {% if post.user_id == user.id %}
     <div class="rightfloat">
         <div class="w3-container" style="width: 80rem;">
             <div class="w3-panel w3-card">
                 <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
+                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px;">{{ user.email }}</a>
                 <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
                     <h2>{{ user.username }}</h2>
                 </a>
@@ -81,7 +69,7 @@
                 </h5>
                 <div class="right">
                     <a href="{{url_for('post',post_id=post.post_id)}}">
-                        <button type="button" class="btn btn-success""><h5>Leave Your Answers</h5></button>
+                        <button type="button" class="btn btn-success""><h4>Leave Your Answers</h4></button>
                     </a>
                     <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
                 </div>

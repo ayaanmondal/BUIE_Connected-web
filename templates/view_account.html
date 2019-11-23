@@ -38,6 +38,11 @@
         font-size: 18px;
     }
     
+    .whitespace {
+        white-space: pre-wrap;
+        font-size: 25px;
+    }
+    
     button {
         border: none;
         outline: 0;
@@ -83,21 +88,21 @@
             </div>
         </div>
         <div class="col-sm-7">
-            <h3 style="margin-left: 0%;">Your posts</h3>
+            <h3 style="margin-left: 0%;">Your Contribution</h3>
             {% for post in posts | reverse %} {%if post.user_id == user.id%}
             <div class="right">
                 <div class="w3-panel w3-card" style="width: 100%;">
                     <h5 class="card-title">
-                        <h4><a class=" article-title " style="color:rgb(233, 114, 17); " href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h4>
+                        <h2><a class=" article-title " style="color:rgb(233, 114, 17); " href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h2>
                     </h5 class="card-text ">
                     <p class="whitespace " style="color: rgb(42, 84, 161); ">{{ post.content }}</p>
                     </h5>
                     <div class="link">
                         <a href="{{url_for('update_post',post_id=post.post_id)}}">
-                            <p><button type="button" style="size:5px;" class="btn btn-success">Edit Post</button></p>
+                            <p><button type="button" style="size:5px;" class="btn btn-success"><i class='fas fa-pen' style='font-size:20px;color:rgb(204, 230, 204)'></i>Edit Post</button></p>
                         </a>
                         <a href="{{url_for('deletepost',post_id=post.post_id)}}">
-                            <button type="button" class="btn btn-danger">Delete</button></a>
+                            <button type="button" class="btn btn-danger"><i class="fa fa-trash" style="font-size:20px"></i>Delete Post</button></a>
                         </a>
                     </div>
                     <small class="left" style="color: rgb(219, 42, 26); ">{{ post.date_posted }}</small>

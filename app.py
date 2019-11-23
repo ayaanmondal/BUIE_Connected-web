@@ -144,6 +144,13 @@ def chatroom():
     posts = Post.query.paginate(page=page,per_page=6)
     return render_template('chat.html',users=users,posts=posts,current_user=current_user)
 
+@app.route('/allposts',methods=['GET','POST'])
+@login_required
+def allposts():
+    users= User.query.all()
+    posts= Post.query.all()
+    return render_template('allposts.html',users=users,posts=posts,current_user=current_user)
+
 @app.route('/allusers', methods=['GET', 'POST'])
 @login_required
 def allusers():
@@ -227,9 +234,50 @@ def delete_post(post_id):
     db.session.query(Post).filter_by(post_id=delete_post.post_id).delete()
     db.session.commit()
     
-   
     flash('Your post has been Deleted!', 'success')
     return redirect('chatroom')
+
+
+@app.route("/answer/<int:answer_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_answer(answer_id):
+    answer = Answer.query.get_or_404(answer_id)
+    if answer.user_id != current_user.id:
+        abort(403)
+    update_form = AnswerForm()
+    if update_form.validate_on_submit():
+        db.session.query(Answer).filter_by(answer_id=answer.answer_id).update({"content": update_form.content.data})
+        db.session.commit()
+        flash('Your Answer has been updated Successfully!', 'success')
+        return redirect(url_for('post',post_id=answer.post_id))
+
+    elif request.method == 'GET':
+        update_form.content.data= answer.content
+        return render_template('update_answer.html',answer=answer,form=update_form)
+
+
+@app.route("/delete/answer/<int:answer_id>")
+@login_required
+def deleteanswer(answer_id):
+    answer = Answer.query.get_or_404(answer_id)
+    users = User.query.all()
+    if answer.user_id != current_user.id:
+        abort(403)
+
+    return render_template('delete_answer.html',answer=answer,users=users,current_user=current_user)
+
+@app.route("/delete/answer/<int:answer_id>/delete", methods=['POST'])
+@login_required
+def delete_answer(answer_id):
+    delete_answer = Answer.query.get_or_404(answer_id)
+    #if delete_answer.user_id != current_user.id:
+        #abort(403)
+
+    db.session.query(Answer).filter_by(answer_id=delete_answer.answer_id).delete()
+    db.session.commit()
+    
+    flash('Your Answer has been Deleted!', 'success')
+    return redirect(url_for('post',post_id=delete_answer.post_id))
 
 @app.route("/user/<int:user_id>")
 @login_required
