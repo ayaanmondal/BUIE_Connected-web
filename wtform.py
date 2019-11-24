@@ -8,14 +8,14 @@ from flask_login import current_user
 
 def invalid_credentials(form,field):
 
-    username_entered = form.username.data
+    email_entered = form.email.data
     password_entered = field.data
 
-    user_object = User.query.filter_by(username=username_entered).first()
+    user_object = User.query.filter_by(email=email_entered).first()
     if user_object is None:
-        raise ValidationError("Username or Password is incorrect")
+        raise ValidationError("Email_id or Password is incorrect")
     elif password_entered != user_object.password:
-        raise ValidationError("Username or Password is incorrect")
+        raise ValidationError("Email_id or Password is incorrect")
 
 class RegistrationFrom(FlaskForm):
 
@@ -48,8 +48,8 @@ class RegistrationFrom(FlaskForm):
             raise ValidationError("Email id already exists, Select a different username.")
 
 class LoginForm(FlaskForm):
-    username = StringField('username_lable',
-    validators=[InputRequired(message="Username required")])
+    email = StringField('email_lable',
+    validators=[InputRequired(message="Email required")])
 
     password = PasswordField('password_lable',
     validators=[InputRequired(message="password required"),invalid_credentials])
@@ -64,6 +64,7 @@ class UpdateUserForm(FlaskForm):
     picture = FileField('Update Profile Picture',
                         validators=[FileAllowed(['jpg', 'png'])])
     submit_botton = SubmitField('Update')
+
 
     def validate_username(self,username):
         if current_user.username != username.data: 

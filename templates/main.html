@@ -4,7 +4,7 @@
     {% block head %}
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title%}{% endblock %}BUIE Chatweb</title>
+    <title>{% block title%}{% endblock %}BUIE Ninja</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -54,7 +54,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <button type="button" style="margin-right:10px; font-size:25px;color: rgb(229, 234, 241);" class="btn btn-primary" onclick="window.location.href='/signup'">Join this community</button>
+                    <button type="button" style="margin-right:10px; font-size:25px;color: rgb(229, 234, 241);" class="btn btn-success" onclick="window.location.href='/signup'">Join our community</button>
                 </ul>
         </nav>
         <!--{% with message = get_flashed_messages(with_categories=true)%} {% if messages%} ('category','message') Category:{{ message[0][0] }} {{ messages[0][1] }} {% endif %} {% endwith %}-->
@@ -66,6 +66,62 @@
         </ul>
         {% endif %} {% endwith %}
     </header>
+    {% endblock %} {% block footer %}
+    <div class="footer " id="footer " style="background: rgb(21, 66, 34); margin-top:50%; ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                    <h1 style="color: darkgray; "> Hey Coders </h1>
+                </div>
+                <div class="col-lg-3 col-sm-2 col-xs-3 ">
+                    <h1 style="color: darkgray; "> Contact me..</h1>
+                    <ul>
+                        <li><a class="email " href="# " style="font-size: 20px; color: darkgray; "> Email: csayan.py@gmail.com </a></li>
+                        <br/>
+                        <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp
+                            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank" style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
+                        <br/>
 
-    {% endblock %}
+                        <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank" style="font-size: 20px; color: darkgray; "> Facebook </a></li>
+                        <br/>
+
+
+
+
+                    </ul>
+                </div>
+                <!--<div class="col-lg-3 col-sm-2 col-xs-3; margin-left:50px; ">
+                        <ul>
+                            <li>
+                                <h5> <a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> ABOUT US</a>
+                                    <h5>
+                            </li>
+                            <li>
+                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> CURRENT SERIES </a>
+                                    <h5>
+                            </li>
+                            <li>
+                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> THE HOUSE </a>
+                                    <h5>
+                            </li>
+                            <li>
+                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> LOOKING BACK </a>
+                                    <h5>
+                            </li>
+                        </ul>
+                    </div>-->
+
+                <!--/.row-->
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.footer-->
+
+        <div class="footer-bottom ">
+            <div class="container ">
+                <p class="pull-left copyright "> Bankura Unnayani Institute Of Engineering </p>
+
+            </div>
+        </div>
+        {% endblock %}
 </body>

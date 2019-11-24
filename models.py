@@ -5,7 +5,7 @@ from datetime import datetime
 from wtform import *
 db = SQLAlchemy()
 class User(UserMixin,db.Model):
-    __tablename__ = "buieuser3"
+    __tablename__ = "buieuser"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, unique=True, nullable=False)
@@ -18,7 +18,7 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f"User('{self.username}','{self.password}','{self.profile_image}')"
 
-"""CREATE TABLE buieuser3(
+"""CREATE TABLE buieuser(
 id SERIAL PRIMARY KEY,
 username VARCHAR(25) UNIQUE NOT NULL,
 password TEXT NOT NULL,
@@ -28,7 +28,7 @@ time_inserted DATE,
 time_updated DATE
 );"""
 class Post(db.Model):
-    __tablename__ = "buiepost1"
+    __tablename__ = "buiepost"
     post_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.String(), nullable=False)
@@ -37,16 +37,16 @@ class Post(db.Model):
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
-"""CREATE TABLE buiepost1(
+"""CREATE TABLE buiepost(
 post_id SERIAL PRIMARY KEY,
 title TEXT NOT NULL,
 content TEXT NOT NULL,
 user_id INT,
 date_posted DATE,
-FOREIGN KEY (user_id) REFERENCES buieuser3 (id)
+FOREIGN KEY (user_id) REFERENCES buieuser (id)
 );"""
 class Answer(db.Model):
-    __tablename__ = "comment1"
+    __tablename__ = "comment"
     answer_id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     post_id = db.Column(db.Integer, nullable=False)
@@ -56,12 +56,12 @@ class Answer(db.Model):
     def __repr__(self):
         return f"Answer('{self.content}', '{self.date_posted}')"
     
-"""CREATE TABLE comment1(
+"""CREATE TABLE comment(
 answer_id SERIAL PRIMARY KEY,
 content TEXT NOT NULL,
 post_id INT,
 user_id INT,
 date_posted DATE,
-FOREIGN KEY (post_id) REFERENCES buiepost1 (post_id),
-FOREIGN KEY (user_id) REFERENCES buieuser3 (id)
+FOREIGN KEY (post_id) REFERENCES buiepost (post_id),
+FOREIGN KEY (user_id) REFERENCES buieuser (id)
 );"""

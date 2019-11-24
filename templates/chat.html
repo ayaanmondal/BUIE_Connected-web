@@ -1,12 +1,20 @@
 {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 20%;
+        margin-left: 10%;
     }
     
     .rightfloatt {
-        margin-left: 20%;
+        margin-left: 15%;
         margin-top: 1%;
+    }
+    
+    .rightfloat.middle {
+        width: 60%;
+    }
+    
+    .rightfloat.side {
+        width: 5%;
     }
     
     .right {
@@ -31,23 +39,6 @@
         white-space: pre-wrap;
         font-size: 25px;
     }
-    
-    .pagination-page-info {
-        padding: .6em;
-        padding-left: 0;
-        width: 40em;
-        margin: .5em;
-        margin-left: 0;
-        font-size: 12px;
-    }
-    
-    .pagination-page-info b {
-        color: black;
-        background: #6aa6ed;
-        padding-left: 2px;
-        padding: .1em .25em;
-        font-size: 150%;
-    }
 </style>
 
 <body>
@@ -58,7 +49,8 @@
         {% endfor %}
     </ul>
     {% endif %} {% endwith %}
-    <div class="rightfloatt">
+
+    <div class="" style="margin-left: 30%; margin-top:1%;">
         {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,left_current=1,right_current=2) | reverse %} {% if page_num %} {% if posts.page == page_num%}
         <a class="btn btn-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% else %}
         <a class="btn btn-outline-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% endif %}{% else %} ... {% endif %}{% endfor %}
@@ -66,29 +58,36 @@
 
     {% for post in posts.items | reverse %} {% for user in users%} {% if post.user_id == user.id %}
     <div class="rightfloat">
-        <div class="w3-container" style="width: 80rem;">
-            <div class="w3-panel w3-card">
-                <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
-                <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
-                    <h2>{{ user.username }}</h2>
-                </a>
+        <div class="rightfloat middle">
+            <div class="w3-container" style="width: 100rem;">
+                <div class="w3-panel w3-card">
+                    <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                    <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
+                    <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
+                        <h2>{{ user.username }}</h2>
+                    </a>
 
-                <h5 class="card-title">
-                    <h2><a class="article-title" style="color:rgb(230, 113, 18);" href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h2>
-                </h5 class="card-text">
-                <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
-                </h5>
-                <div class="right">
-                    <a href="{{url_for('post',post_id=post.post_id)}}">
+                    <h5 class="card-title">
+                        <h2><a class="article-title" style="color:rgb(204, 97, 10);" href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h2>
+                    </h5 class="card-text">
+                    <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
+                    </h5>
+                    <div class="right">
+                        <a href="{{url_for('post',post_id=post.post_id)}}">
                         <button type="button" class="btn btn-success""><h5>Leave Your Answers</h5></button>
                     </a>
-                    <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
+                        <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-    {% endif %} {% endfor %}{% endfor %} {% endblock %}
+    </div>
+    {% endif %} {% endfor %}{% endfor %}
+    <div class="" style="margin-left: 30%; margin-top:1%;">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,left_current=1,right_current=2) | reverse %} {% if page_num %} {% if posts.page == page_num%}
+        <a class="btn btn-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{url_for('chatroom',page=page_num)}}">{{page_num}}</a> {% endif %}{% else %} ... {% endif %}{% endfor %}
+    </div>{% endblock %}
 
 </body>

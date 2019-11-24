@@ -32,7 +32,7 @@ def load_user(id):
 
 @app.route('/')
 def homepage():
-    return render_template('home.html')
+    return render_template('font.html')
 
 @app.route('/signup',methods=['GET','POST'])
 def singup():
@@ -67,7 +67,7 @@ def login():
     
     login_form=LoginForm()
     if login_form.validate_on_submit():
-        user_object = User.query.filter_by(username=login_form.username.data).first()
+        user_object = User.query.filter_by(email=login_form.email.data).first()
         login_user(user_object)
         flash("You are logged is successfully",'success')
         return redirect(url_for('chatroom'))
@@ -90,7 +90,8 @@ def account():
         if update_form.picture.data:
             picture_file = save_picture(update_form.picture.data)
             current_user.profile_image = picture_file
-        
+        else:
+            picture_file = current_user.profile_image
 
         db.session.query(User).filter_by(id=current_user.id).update({"username": update_form.username.data})
         db.session.query(User).filter_by(id=current_user.id).update({"email": update_form.email.data})
@@ -100,7 +101,7 @@ def account():
 
         flash('User Account Updated!','success')
         #return redirect(url_for('logout'))
-        return redirect(url_for('login'))
+        return redirect(url_for('view_account'))
 
     elif request.method == 'GET':
         update_form.username.data = current_user.username
