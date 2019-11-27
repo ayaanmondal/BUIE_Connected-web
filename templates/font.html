@@ -7,7 +7,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>{% block title%}{% endblock %}BUIE Ninja</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -23,6 +23,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     .navbar-brand {
         font-size: 30px;
@@ -55,11 +57,48 @@
         background-position: center;
         background-size: cover;
     }
+    
+    .mobile-container {
+        max-width: 480px;
+        margin: auto;
+        background-color: #555;
+        height: 500px;
+        color: white;
+        border-radius: 10px;
+    }
+    
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+        position: relative;
+    }
+    
+    .topnav #myLinks {
+        display: none;
+    }
+    
+    .topnav a {
+        float: left;
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    
+    .topnav a.icon {
+        float: right;
+    }
+    
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
 </style>
 
 <body>
 
     <header>
+
         <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar">
             <a class="navbar-brand" style="font-size:50px; color: rgb(156, 223, 12) " href="/">
                 <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="60" height="=70" class="d-inline-block align-top" style="color:   ghostwhite">BUIE Ninja
@@ -78,7 +117,10 @@
                 <ul class="navbar-nav ml-auto">
                     <button type="button" style="margin-right:10px; font-size:25px;color: rgb(229, 234, 241);" class="btn btn-success" onclick="window.location.href='/signup'">Join Our community</button>
                 </ul>
+            </div>
         </nav>
+
+
     </header>
 
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">

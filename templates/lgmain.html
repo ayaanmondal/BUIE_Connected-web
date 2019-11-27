@@ -5,20 +5,19 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>{% block title%}{% endblock %}BUIE Ninja</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!--<link rel='stylesheet' type='text/css' media='screen' href='main.css'>-->
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="icon" href="https://img.icons8.com/cute-clipart/64/000000/forward-message.png">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <!--<script src='main.js'></script>-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endblock %}
+    <script src='main.js'></script>
+    {% endblock %}
 
 </head>
 <style>
@@ -41,73 +40,77 @@
 <body>
     {% block content %}
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar">
-            <a class="navbar-brand" style="color: rgb(156, 223, 12)" href="/chatroom">
-                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="50" height="=70" class="d-inline-block align-top" style="color:   ghostwhite">BUIE Ninja
+        <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar" ">
+            <a class="navbar-brand " style="color: rgb(156, 223, 12) " href="/chatroom ">
+                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="50 " height="=70 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
             </a>
 
-            <!--<button type="button" style="margin-right: 5px" class="btn btn-info">About Us</button>-->
+            <!--<button type="button " style="margin-right: 5px " class="btn btn-info ">About Us</button>-->
 
-            <!--<ul class="nav navbar-nav center-nav">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search on buie overflow..." aria-label="Search" size="70px">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <!--<ul class="nav navbar-nav center-nav ">
+                    <form class="form-inline ">
+                        <input class="form-control mr-sm-2 " type="search " placeholder="Search on buie overflow... " aria-label="Search " size="70px ">
+                        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit ">Search</button>
                     </form>
                 </ul>-->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" style="color: white" href="/chatroom">
-                            <h4>Home</h4><span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" style="color: white" href='/allposts' "><h4>New posts</h4><span class="sr-only ">(current)</span></a>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                <ul class="navbar-nav mr-auto ">
+                    <li class="nav-item active ">
+                        <a class="nav-link " style="color: white " href="/chatroom ">
+                            <h4>Home</h4><span class="sr-only ">(current)</span></a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href="/allusers "><h4>All Users</h4></a>
-                    </li>
-                    <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href="# "><h4>About</h4></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto ">
-                        <button type="button " class="btn btn-success "onclick="window.location.href='/post/new' "><h5><i class='fas fa-user-graduate' style='font-size:30px;color:rgb(14, 109, 14)'></i>Ask your Query</h5></button>
-                    <li class="nav-item ">
-                        <a class="nav-link " style="color: white " href="/viewaccount ">
-                            <h4><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h4>
-                        </a>
-                    </li>
+                        <a class="nav-link " style="color: white " href='/allposts' ">
+            <h4>New posts</h4><span class="sr-only ">(current)</span></a>
+            </li>
+            <li class="nav-item active ">
+                <a class="nav-link " style="color: white " href="/allusers ">
+                    <h4>All Users</h4>
+                </a>
+            </li>
+            <li class="nav-item active ">
+                <a class="nav-link " style="color: white " href="# ">
+                    <h4>About</h4>
+                </a>
+            </li>
+            </ul>
+            <ul class="navbar-nav ml-auto ">
+                <button type="button " class="btn btn-success " onclick="window.location.href='/post/new' "><h5><i class='fas fa-user-graduate' style='font-size:30px;color:rgb(14, 109, 14)'></i>Ask your Query</h5></button>
+                <li class="nav-item ">
+                    <a class="nav-link " style="color: white " href="/viewaccount ">
+                        <h4><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h4>
+                    </a>
+                </li>
 
-                </ul>
+            </ul>
         </nav>
     </header>
-    {% endblock %}
-    {% block footer %}
-    <div class="footer " id="footer " style="background: rgb(21, 66, 34); margin-top:50%; ">
-            <div class="container ">
-                <div class="row ">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
-                        <h1 style="color: darkgray; "> Hey Coders </h1>
-                    </div>
-                    <div class="col-lg-3 col-sm-2 col-xs-3 ">
-                        <h1 style="color: darkgray; "> Contact me..</h1>
-                        <ul>
-                            <li><a class="email " href="# " style="font-size: 20px; color: darkgray; "> Email: csayan.py@gmail.com </a></li>
-                            <br/>
-                            <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp
-                            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D "target="_blank "style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
-                            <br/>
-                            
-                            <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs "target="_blank "style="font-size: 20px; color: darkgray; "> Facebook </a></li>
-                            <br/>
-                            
+    {% endblock %} {% block footer %}
+    <div class="footer " id="footer " style="background: rgb(21, 66, 34); margin-top:50%;margin-bottom:auto ">
+        <div class="container ">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                <h1 style="color: darkgray; "> Hey Coders </h1>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-3 ">
+                <h1 style="color: darkgray; "> Contact me..</h1>
+                <ul>
+                    <li><a class="email " href="# " style="font-size: 20px; color: darkgray; "> Email: csayan.py@gmail.com </a></li>
+                    <br/>
+                    <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp
+                            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank " style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
+                    <br/>
+
+                    <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank " style="font-size: 20px; color: darkgray; "> Facebook </a></li>
+                    <br/>
 
 
-        
-                        </ul>
-                    </div>
-                    <!--<div class="col-lg-3 col-sm-2 col-xs-3; margin-left:50px; ">
+
+
+                </ul>
+            </div>
+            <!--<div class="col-lg-3 col-sm-2 col-xs-3; margin-left:50px; ">
                         <ul>
                             <li>
                                 <h5> <a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> ABOUT US</a>
@@ -128,17 +131,17 @@
                         </ul>
                     </div>-->
 
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </div>
-            <!--/.footer-->
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.footer-->
 
-            <div class="footer-bottom ">
-                <div class="container ">
-                    <p class="pull-left copyright "> Bankura Unnayani Institute Of Engineering </p>
+    <div class="footer-bottom ">
+        <div class="container ">
+            <p class="pull-left copyright "> Bankura Unnayani Institute Of Engineering </p>
 
-                </div>
-            </div>
+        </div>
+    </div>
     {% endblock %}
 </body>

@@ -1,10 +1,7 @@
 {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
-    .rightfloat {
-        margin-left: 10%;
-    }
-    
     .rightfloatt {
+        margin-left: 15%;
         margin-left: 15%;
         margin-top: 1%;
     }
@@ -58,29 +55,27 @@
 
     {% for post in posts.items | reverse %} {% for user in users%} {% if post.user_id == user.id %}
     <div class="rightfloat">
-        <div class="rightfloat middle">
-            <div class="w3-container" style="width: 100rem;">
-                <div class="w3-panel w3-card">
-                    <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                    <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
-                    <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
-                        <h2>{{ user.username }}</h2>
-                    </a>
+        <div class="w3-panel w3-card" style="width: 100%;">
+            <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+            <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
+            <a style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
+                <h2>{{ user.username }}</h2>
+            </a>
 
-                    <h5 class="card-title">
-                        <h2><a class="article-title" style="color:rgb(204, 97, 10);" href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h2>
-                    </h5 class="card-text">
-                    <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
-                    </h5>
-                    <div class="right">
-                        <a href="{{url_for('post',post_id=post.post_id)}}">
+            <h5 class="card-title">
+                <h2><a class="article-title" style="color:rgb(204, 97, 10);" href="{{url_for('post',post_id=post.post_id)}}"><i style='font-size:24px; color:crimson' class='fas'>&#xf101;</i>{{ post.title }}</a></h2>
+            </h5 class="card-text">
+            <p class="whitespace" style="color: rgb(42, 84, 161);">{{ post.content }}</p>
+            </h5>
+            <div class="right">
+                <a href="{{url_for('post',post_id=post.post_id)}}">
                         <button type="button" class="btn btn-success""><h5>Leave Your Answers</h5></button>
                     </a>
-                        <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
-                    </div>
-                </div>
+                <small class="left" style="color: rgb(219, 42, 26);">{{ post.date_posted }}:</small>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
     {% endif %} {% endfor %}{% endfor %}

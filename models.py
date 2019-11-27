@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
 from wtform import *
+
 db = SQLAlchemy()
+
 class User(UserMixin,db.Model):
     __tablename__ = "buieuser"
     id = db.Column(db.Integer, primary_key=True)

@@ -19,10 +19,6 @@
 
 </head>
 <style>
-    .navbar-brand {
-        font-size: 30px;
-    }
-    
     html,
     body,
     h1,
@@ -38,33 +34,34 @@
 <body>
     {% block content %}
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar">
-            <a class="navbar-brand" style="color: rgb(156, 223, 12)" href="/">
-                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png" width="50" height="=70" class="d-inline-block align-top" style="color:   ghostwhite">BUIE Ninja
+        <nav class=" navbar navbar-expand-md navbar-light bg-dark " id="navbar ">
+            <a class="navbar-brand " style="color: rgb(156, 223, 12) " href="/ ">
+                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="50 " height="=70 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
             </a>
 
-            <!--<button type="button" style="margin-right: 5px" class="btn btn-info">About Us</button>-->
+            <!--<button type="button " style="margin-right: 5px " class="btn btn-info ">About Us</button>-->
 
-            <!--<ul class="nav navbar-nav center-nav">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search on buie overflow..." aria-label="Search" size="70px">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <!--<ul class="nav navbar-nav center-nav ">
+                    <form class="form-inline ">
+                        <input class="form-control mr-sm-2 " type="search " placeholder="Search on buie overflow... " aria-label="Search " size="70px ">
+                        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit ">Search</button>
                     </form>
                 </ul>-->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <button type="button" style="margin-right:10px; font-size:25px;color: rgb(229, 234, 241);" class="btn btn-success" onclick="window.location.href='/signup'">Join our community</button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                <ul class="navbar-nav ml-auto ">
+                    <button type="button " style="margin-right:10px; font-size:25px;color: rgb(229, 234, 241); " class="btn btn-success " onclick="window.location.href='/signup' ">Join our community</button>
                 </ul>
         </nav>
         <!--{% with message = get_flashed_messages(with_categories=true)%} {% if messages%} ('category','message') Category:{{ message[0][0] }} {{ messages[0][1] }} {% endif %} {% endwith %}-->
         {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
         <ul class=flashes>
             {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
+            <li class="alert alert-{{ category }} ">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %} {% endwith %}
+        </div>
     </header>
     {% endblock %} {% block footer %}
     <div class="footer " id="footer " style="background: rgb(21, 66, 34); margin-top:50%; ">
@@ -79,10 +76,10 @@
                         <li><a class="email " href="# " style="font-size: 20px; color: darkgray; "> Email: csayan.py@gmail.com </a></li>
                         <br/>
                         <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp
-                            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank" style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
+            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank " style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
                         <br/>
 
-                        <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank" style="font-size: 20px; color: darkgray; "> Facebook </a></li>
+                        <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank " style="font-size: 20px; color: darkgray; "> Facebook </a></li>
                         <br/>
 
 

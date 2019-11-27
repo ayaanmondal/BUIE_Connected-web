@@ -1,7 +1,8 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 35%;
+        margin-left: 5%;
+        margin-left: 5%;
     }
     
     .right {
@@ -34,52 +35,51 @@
     </ul>
     {% endif %} {% endwith %}
     <div class="rightfloat">
-        <div class="w3-container" style="width: 40rem;">
-            <div class="w3-panel w3-card">
-                <div class="right">
-                    <img src="{{ profile_image }}" style="width:50%; margin-left:5%">
-                    <h1>{{current_user.username}}</h1>
-                    <div class="container-section" style="width: 10rem;">
-                        <form method="POST" action="{{url_for('account')}}" enctype="multipart/form-data">
-                            {{form.hidden_tag()}}
-                            <div class="form-group">
-                                {{form.username.label(class='form-group')}} {{form.username(class='form-control',style=" font-size:20px; height:40px; width:200%;")}}
-                                <ul>
-                                    {% for error in form.username.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+        <div class="w3-panel w3-card" style="width: 100%;">
+            <div class="right">
+                <img src="{{ profile_image }}" style="width:50%; margin-left:5%">
+                <h1>{{current_user.username}}</h1>
+                <div class="container-section" style="width: 10rem;">
+                    <form method="POST" action="{{url_for('account')}}" enctype="multipart/form-data">
+                        {{form.hidden_tag()}}
+                        <div class="form-group">
+                            {{form.username.label(class='form-group')}} {{form.username(class='form-control',style=" font-size:20px; height:40px; width:200%;")}}
+                            <ul>
+                                {% for error in form.username.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-                            <div class="form-group">
-                                {{form.email.label(class='form-group')}} {{form.email(class='form-control-file',style=" font-size:20px; height:40px; width:200%;")}}
-                                <ul>
-                                    {% for error in form.email.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="form-group">
+                            {{form.email.label(class='form-group')}} {{form.email(class='form-control-file',style=" font-size:20px; height:40px; width:200%;")}}
+                            <ul>
+                                {% for error in form.email.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-                            <div class="form-group">
-                                {{form.picture.label(class='form-group')}} {{form.picture(class='form-control-file')}}
-                                <ul>
-                                    {% for error in form.picture.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="form-group">
+                            {{form.picture.label(class='form-group')}} {{form.picture(class='form-control-file')}}
+                            <ul>
+                                {% for error in form.picture.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-                            <div class="form-group">
-                                <input class="w3-button w3-block w3-green" size="5px" type="submit" value="Update Account">
-                                <button type="button" style="margin-left: 1px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out </button>
-                            </div>
+                        <div class="form-group">
+                            <input class="w3-button w3-block w3-green" size="5px" type="submit" value="Update Account">
+                            <button type="button" style="margin-left: 1px" class="btn btn-primary" onclick="window.location.href='/logout'">Log out </button>
+                        </div>
 
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     {% endblock %}
 </body>

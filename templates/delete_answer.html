@@ -1,7 +1,8 @@
 <!DOCTYPE html> {% extends "lgmain.html" %} {% block title %}{% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %} {{ super() }}
 <style>
     .rightfloat {
-        margin-left: 26%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
     
     .right {
@@ -36,26 +37,26 @@
     </div>
     {% for user in users %} {% if user.id == answer.user_id %}
     <div class="rightfloat">
-        <div class="w3-container" style="width: 70%;">
-            <div class="w3-panel w3-card">
-                <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161); font-size:25px">Email:</a> <a>{{ user.email }}</a>
-                <a href="{{url_for('searchuser',user_id=user.id)}}">
-                    <h2 style="color:rgb(2, 97, 65);">{{ user.username }} </h2>
-                </a>
-                <p class="whitespace" style="color: rgb(42, 84, 161); font-size:20px">{{ answer.content }}</p>
-                </h5>
-                <div class="right">
-                    <small class="left" style="color: rgb(219, 42, 26);font-size:20px">{{ answer.date_posted }}</small>
-                </div>
+        <div class="w3-panel w3-card" style="width: 100%;">
+
+            <img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+            <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161); font-size:25px">Email:</a> <a>{{ user.email }}</a>
+            <a href="{{url_for('searchuser',user_id=user.id)}}">
+                <h2 style="color:rgb(2, 97, 65);">{{ user.username }} </h2>
+            </a>
+            <p class="whitespace" style="color: rgb(42, 84, 161); font-size:20px">{{ answer.content }}</p>
+            </h5>
+            <div class="right">
+                <small class="left" style="color: rgb(219, 42, 26);font-size:20px">{{ answer.date_posted }}</small>
             </div>
         </div>
     </div>
+    </div>
     <div class="rightfloat">
-        <div class="w3-container">
+        <div class="w3-panel w3-card" style="width: 100%;">
             <h2 style="margin-left: 27%;">Warning</h2>
             <div class="side">
-                <div class="w3-card-4" style="width:50%">
+                <div class="w3-panel w3-card" style="width: 100%;">
                     <header class="w3-container w3-light-grey">
                         <i class='fas fa-bullhorn' style='font-size:36px; margin-left '>Are you absolutely sure?</i>
                     </header>
