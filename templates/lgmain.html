@@ -12,6 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="icon" href="https://img.icons8.com/cute-clipart/64/000000/forward-message.png">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -30,118 +32,162 @@
     h1,
     h2,
     h3,
-    h4,
+    h6,
     h5,
     h6 {
         font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    
+    .fakeimg {
+        height: 200px;
+        background: #aaa;
+    }
+    
+    body {
+        font-family: "Lato", sans-serif
+    }
+    
+    .mySlides {
+        display: none
     }
 </style>
 
 <body>
     {% block content %}
-    <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-dark" id="navbar" ">
+
+    <!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navbar" ">
             <a class="navbar-brand " style="color: rgb(156, 223, 12) " href="/chatroom ">
-                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="50 " height="=70 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
+                <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="40 " height="=60 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
             </a>
 
             <!--<button type="button " style="margin-right: 5px " class="btn btn-info ">About Us</button>-->
 
-            <!--<ul class="nav navbar-nav center-nav ">
+    <!--<ul class="nav navbar-nav center-nav ">
                     <form class="form-inline ">
                         <input class="form-control mr-sm-2 " type="search " placeholder="Search on buie overflow... " aria-label="Search " size="70px ">
                         <button class="btn btn-outline-success my-2 my-sm-0 " type="submit ">Search</button>
                     </form>
                 </ul>-->
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-                <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href="/chatroom ">
-                            <h4>Home</h4><span class="sr-only ">(current)</span></a>
+    <!--<button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#collapsibleNavbar ">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+            <div class="collapse navbar-collapse " id="collapsibleNavbar ">
+                <ul class="navbar-nav ">
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href="/chatroom ">Home</a>
                     </li>
-                    <li class="nav-item active ">
-                        <a class="nav-link " style="color: white " href='/allposts' ">
-            <h4>New posts</h4><span class="sr-only ">(current)</span></a>
-            </li>
-            <li class="nav-item active ">
-                <a class="nav-link " style="color: white " href="/allusers ">
-                    <h4>All Users</h4>
-                </a>
-            </li>
-            <li class="nav-item active ">
-                <a class="nav-link " style="color: white " href="# ">
-                    <h4>About</h4>
-                </a>
-            </li>
-            </ul>
-            <ul class="navbar-nav ml-auto ">
-                <button type="button " class="btn btn-success " onclick="window.location.href='/post/new' "><h5><i class='fas fa-user-graduate' style='font-size:30px;color:rgb(14, 109, 14)'></i>Ask your Query</h5></button>
-                <li class="nav-item ">
-                    <a class="nav-link " style="color: white " href="/viewaccount ">
-                        <h4><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h4>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-    </header>
-    {% endblock %} {% block footer %}
-    <div class="footer " id="footer " style="background: rgb(21, 66, 34); margin-top:50%;margin-bottom:auto ">
-        <div class="container ">
-
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
-                <h1 style="color: darkgray; "> Hey Coders </h1>
-            </div>
-            <div class="col-lg-3 col-sm-2 col-xs-3 ">
-                <h1 style="color: darkgray; "> Contact me..</h1>
-                <ul>
-                    <li><a class="email " href="# " style="font-size: 20px; color: darkgray; "> Email: csayan.py@gmail.com </a></li>
-                    <br/>
-                    <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp
-                            _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank " style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
-                    <br/>
-
-                    <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank " style="font-size: 20px; color: darkgray; "> Facebook </a></li>
-                    <br/>
-
-
-
-
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href='/allposts' >New posts</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href="/allusers ">All Users</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href="# ">About</a>
+                     </li>
+                </ul>
+                <ul class="navbar-nav ml-auto ">
+                    <button type="button " class="btn btn-success " style="height: 2%; " onclick="window.location.href='/post/new' "><h6><i class='fas fa-user-graduate' style='font-size:25px;color:rgb(14, 109, 14)'></i>Ask your Query</h6></button>
+                    <li class="nav-item ">
+                        <a class="nav-link " style="color: white " href="/viewaccount ">
+                            <h6><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h6>
+                        </a>
+                    </li>
                 </ul>
             </div>
-            <!--<div class="col-lg-3 col-sm-2 col-xs-3; margin-left:50px; ">
-                        <ul>
-                            <li>
-                                <h5> <a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> ABOUT US</a>
-                                    <h5>
-                            </li>
-                            <li>
-                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> CURRENT SERIES </a>
-                                    <h5>
-                            </li>
-                            <li>
-                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> THE HOUSE </a>
-                                    <h5>
-                            </li>
-                            <li>
-                                <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> LOOKING BACK </a>
-                                    <h5>
-                            </li>
-                        </ul>
-                    </div>-->
-
-            <!--/.row-->
+        </nav>-->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand " style="color: rgb(156, 223, 12) " href="/chatroom ">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="40 " height="=60 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link " style="color: white " href="/chatroom ">
+                        <h6>Home</h6>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="color: white " href='/allposts'>
+                        <h6>New posts</h6>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="color: white " href="/allusers ">
+                        <h6>All Users</h6>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " style="color: white " href="# ">
+                        <h6>About</h6>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto ">
+                <button type="button " class="btn btn-success " style="height: 2%; " onclick="window.location.href='/post/new' "><h6><i class='fas fa-user-graduate' style='font-size:25px;color:rgb(14, 109, 14)'></i>Ask your Query</h6></button>
+                <li class="nav-item ">
+                    <a class="nav-link " style="color: white " href="/viewaccount ">
+                        <h6><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h6>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <!--/.container-->
+    </nav>
+
+    {% endblock %} {% block footer %}
+    <!-- <div class=" " style="margin-left: 25%; ">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+            <h1 style="color: rgba(22, 20, 20, 0.239); "> Hey Coders </h1>
+        </div>
+        <div class="col-lg-3 col-sm-2 col-xs-3 ">
+            <h1 style="color: rgba(19, 17, 17, 0.452); "> Contact me..</h1>
+            <ul>
+                <li><a class="email " href="# " style="font-size: 20px; color: rgb(37, 36, 36); "> Email: csayan.py@gmail.com </a></li>
+                <br/>
+                <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp _result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D
+        " target="_blank " style="font-size: 20px; color: rgb(42, 41, 41); "> Linkdin </a></li>
+                <br/>
+
+                <li><a class="email " href="https://www.facebook.com/profile.php?id=100015447361074&ref=br_rs " target="_blank " style="font-size: 20px; color: rgb(31, 30, 30); "> Facebook </a></li>
+                <br/>
+            </ul>
+        </div>
+        <!--<div class="col-lg-3 col-sm-2 col-xs-3; margin-left:50px; ">
+                                            <ul>
+                                                <li>
+                                                    <h5> <a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> ABOUT US</a>
+                                                        <h5>
+                                                </li>
+                                                <li>
+                                                    <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> CURRENT SERIES </a>
+                                                        <h5>
+                                                </li>
+                                                <li>
+                                                    <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> THE HOUSE </a>
+                                                        <h5>
+                                                </li>
+                                                <li>
+                                                    <h5><a href="# " style="margin-top: 5em; font-size: 20px; color: darkgray; "> LOOKING BACK </a>
+                                                        <h5>
+                                                </li>
+                                            </ul>
+                                        </div>-->
+
+    <!--/.row-->
+    </div>
+    <!--/.container-->
     </div>
     <!--/.footer-->
 
-    <div class="footer-bottom ">
+    <!--<div class="footer-bottom ">
         <div class="container ">
             <p class="pull-left copyright "> Bankura Unnayani Institute Of Engineering </p>
 
         </div>
-    </div>
+    </div>-->
+
     {% endblock %}
 </body>

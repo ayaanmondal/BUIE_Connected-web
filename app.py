@@ -16,7 +16,7 @@ app.secret_key="winner winner chicken dinner"
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['SQLALCHEMY_DATABASE_URI']='sqlite:////tmp/test.db'
 #app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
-app.config['SQLALCHEMY_DATABASE_URI']='postgres://vljxjlxltvvchb:501f75f71e229cf0dfa7540399ee92d266c7b6fc5f44df4de36d2b25b94b72bf@ec2-23-21-248-1.compute-1.amazonaws.com:5432/d65u9bi8cpbh9r'
+app.config['SQLALCHEMY_DATABASE_URI']='postgres://zpkbbytkeqmvec:1dc87f0a9952e95d6158f933cd8ac5159cf03f5efeb3c19b1c5307e231390e75@ec2-174-129-255-37.compute-1.amazonaws.com:5432/dbjg2m58bvo7f2'
 
 db = SQLAlchemy(app)
 
@@ -70,7 +70,7 @@ def login():
     if login_form.validate_on_submit():
         user_object = User.query.filter_by(email=login_form.email.data).first()
         login_user(user_object)
-        flash("You are logged is successfully",'success')
+        flash("You are logged in successfully",'success')
         return redirect(url_for('chatroom'))
 
     return render_template('login.html',form=login_form)
@@ -143,7 +143,7 @@ def save_picture(form_picture):
 def chatroom():
     users= User.query.all()
     page = request.args.get('page',1, type=int)
-    posts = Post.query.paginate(page=page,per_page=6)
+    posts = Post.query.paginate(page=page,per_page=20)
     return render_template('chat.html',users=users,posts=posts,current_user=current_user)
 
 @app.route('/allposts',methods=['GET','POST'])
