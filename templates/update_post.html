@@ -8,38 +8,43 @@
 </style>
 
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-    <ul class=flashes>
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %} {% endif %} {% endwith %}
-    </ul>
-    <div class="rightfloat">
-        <h1>Update Your Query !</h1>
-        <form action="{{ url_for('update_post',post_id=post.post_id)}}" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{form.title.label(class='form-group')}}{{ form.title(class='form-control', style=" font-size:30px; height:100px")}}
-                <ul>
-                    {% for error in form.title.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %} {% endif %} {% endwith %}
+        </ul>
+        <div class="col-sm-12">
+            <h1>Update Your Query !</h1>
+            <form action="{{ url_for('update_post',post_id=post.post_id)}}" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{form.title.label(class='form-group')}}{{ form.title(class='form-control', style=" font-size:17px; height:100px")}}
+                    <ul>
+                        {% for error in form.title.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-            <div>
-                {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:30px; height:100px")}}
-                <ul>
-                    {% for error in form.content.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update Post">
-            </div>
-        </form>
-        <a></a>
+                <div>
+                    {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:15px; height:100px")}}
+                    <ul>
+                        {% for error in form.content.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update Post">
+                </div>
+            </form>
+            <a></a>
+        </div>
     </div>
+    <div class="jumbotron text-center" style="margin-top:100%">
+        <p>Powered by:BUIE cse_3rd_yr</p>
+    </div>
+    {% endblock %}
 </body>
-{% endblock %}

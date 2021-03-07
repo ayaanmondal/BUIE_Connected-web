@@ -7,37 +7,40 @@
     }
 </style>
 
-<body>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-    <ul class=flashes>
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %} {% endif %} {% endwith %}
-    </ul>
-    <div class="rightfloat">
-        <h1>Ask Your Query !</h1>
-        <form action="{{ url_for('new_post')}}" method="POST">
-            <div>
-                {{ form.title(class='form-control',placeholder='Title', style=" font-size:30px; height:100px")}}
-                <ul>
-                    {% for error in form.title.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+<body style="background-color:black;">
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %} {% endif %} {% endwith %}
+        </ul>
+        <div class="col-sm-12">
 
-            <div>
-                {{ form.content(class='form-control',placeholder='Description', style=" font-size:30px; height:300px")}}
-                <ul>
-                    {% for error in form.content.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Post my query">
-            </div>
-        </form>
+            <h1 style="color: blanchedalmond;">Ask Your Query !</h1>
+            <form action="{{ url_for('new_post')}}" method="POST" style="color: white; ">
+                <div>
+                    {{ form.title(class='form-control',placeholder='Title', style=" font-size:30px; background-color:rgb(49, 48, 48); border-radius: 20px; height:100px")}}
+                    <ul>
+                        {% for error in form.title.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div>
+                    {{ form.content(class='form-control',placeholder='Description', style=" font-size:30px; background-color:rgb(49, 48, 48); border-radius: 20px; height:300px")}}
+                    <ul>
+                        {% for error in form.content.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <input class="w3-button w3-block w3-green" style="font-size: 30px; border-radius: 20px;" type="submit" value="Post my query">
+                </div>
+            </form>
+        </div>
     </div>
+    {% endblock %}
 </body>
-{% endblock %}

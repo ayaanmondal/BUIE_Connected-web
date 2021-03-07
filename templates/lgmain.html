@@ -4,7 +4,7 @@
     {% block head %}
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title%}{% endblock %}BUIE Ninja</title>
+    <title>{% block title%}{% endblock %}BUIE BLOGs</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -97,8 +97,8 @@
             </div>
         </nav>-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand " style="color: rgb(156, 223, 12) " href="/chatroom ">
-            <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="40 " height="=60 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Ninja
+        <a class="navbar-brand " style="color: rgb(156, 223, 12); font-weight: 600; " href="/chatroom ">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/chat-message-sent.png " width="40 " height="=60 " class="d-inline-block align-top " style="color: ghostwhite ">BUIE Blogs
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                   <span class="navbar-toggler-icon"></span>
@@ -127,12 +127,13 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto ">
-                <button type="button " class="btn btn-success " style="height: 2%; " onclick="window.location.href='/post/new' "><h6><i class='fas fa-user-graduate' style='font-size:25px;color:rgb(14, 109, 14)'></i>Ask your Query</h6></button>
                 <li class="nav-item ">
                     <a class="nav-link " style="color: white " href="/viewaccount ">
                         <h6><i style='font-size:24px' class='fas'>&#xf508;</i> Hey {{current_user.username}}</h6>
                     </a>
                 </li>
+                <button type="button " class="btn btn-success " style="height: 2%; " onclick="window.location.href='/post/new' "><h6><i class='fas fa-user-graduate' style='font-size:25px; color:rgb(14, 109, 14)'></i>Ask your Query</h6></button>
+                
             </ul>
         </div>
     </nav>

@@ -8,29 +8,34 @@
 </style>
 
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-    <ul class=flashes>
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %} {% endif %} {% endwith %}
-    </ul>
-    <div class="rightfloat">
-        <h1>Please Give a Better Solution !! !</h1>
-        <form action="{{ url_for('update_answer',answer_id=answer.answer_id)}}" method="POST">
-            {{ form.hidden_tag() }}
-            <div>
-                {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:30px; height:100px")}}
-                <ul>
-                    {% for error in form.content.errors %}
-                    <li>{{error}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update Answer">
-            </div>
-        </form>
-        <a></a>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %} {% endif %} {% endwith %}
+        </ul>
+        <div class="col-sm-12">
+            <h1>Please Give a Better Solution !! !</h1>
+            <form action="{{ url_for('update_answer',answer_id=answer.answer_id)}}" method="POST">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{form.content.label(class='form-group')}}{{form.content(class='form-control', style=" font-size:15px; height:100px")}}
+                    <ul>
+                        {% for error in form.content.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <input class="w3-button w3-block w3-green" style="font-size: 30px;" type="submit" value="Update My Answer">
+                </div>
+            </form>
+            <a></a>
+        </div>
     </div>
+    <div class="jumbotron text-center" style="margin-top:100%">
+        <p>Powered by:BUIE cse_3rd_yr</p>
+    </div>
+    {% endblock %}
 </body>
-{% endblock %}

@@ -23,6 +23,9 @@
         margin-left: 0%;
         margin-right: 5%;
     }
+    img {
+        border-radius: 50%;
+    }
     
     .avatar {
         vertical-align: middle;
@@ -33,7 +36,7 @@
     
     .whitespace {
         white-space: pre-wrap;
-        font-size: 25px;
+        font-size: 15px;
     }
     
     .containerr {
@@ -77,7 +80,7 @@
     }
 </style>
 
-<body>
+<body style="background-color: rgb(27, 25, 25);">
 
     {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
     <ul class=flashes>
@@ -103,95 +106,69 @@
         <div class="row">
             <div class="col-sm-8">
                 {% for post in posts.items | reverse %} {% for user in users%} {% if post.user_id == user.id %}
-                <div class="" style="background-color: aliceblue;">
-                    <!--<img class="avatar" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
-                                <a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" style="color:rgb(42, 84, 161);font-size:25px;">Email:</a> <a style="font-size: 23px; color:rgb(34, 34, 68)">{{ user.email }}</a>
-                                -->
-                    <a class="card-link" style="color:rgb(2, 97, 65);" href="{{url_for('searchuser',user_id=user.id)}}">
-                        <h4>{{ user.username }}</h4>
-                    </a>
-
-                    <h5 class="card-title">
-                        <h4><i style='font-size:25px; color:crimson' class='fas'>&#xf101;</i><a class="article-title" style="color:rgb(29, 27, 26);" href="{{url_for('post',post_id=post.post_id)}}">{{ post.title }}</a></h4>
-                        <!--</h5 class="card-text">
-                                <p class="whitespace" style="color: rgb(2, 19, 51);">{{ post.content }}</p>-->
-                    </h5>
-                    <div class ""><small class="left" style="color: rgb(20, 17, 17);">{{ post.date_posted }}</small>
-                        <!--<div class="right">
-                                        <a href="{{url_for('post',post_id=post.post_id)}}">
-                                            <button type="button" class="btn btn-success"><h6>Leave Your Answers</h6></button>
-                                        </a>
-                                    </div>-->
+                <div class="card mb-3" style="background-color: rgb(41, 49, 49); border-radius: 25px;">
+                    <div class="card-body">
+                        <img class="avatar" style="size:5px;" src="{{ url_for('static', filename='images/' + user.profile_image) }}">
+                        <a class="card-link" style="color:rgb(255, 255, 255); font-size:20px;font-weight: 550; margin-top:3%" href="{{url_for('searchuser',user_id=user.id)}}">{{ user.username }}</a>
+                        <h5 class="card-title">
+                            <h4><i style='font-size:25px; color:crimson' class='fas'>&#xf101;</i><a class="article-title" style="color:rgb(255, 255, 255);" href="{{url_for('post',post_id=post.post_id)}}"> {{ post.title }}</a></h4>
+                            <!--<p class="whitespace">{{ post.content}}</p>-->
+                            <a href="{{url_for('post',post_id=post.post_id)}}" style="font-size:15px;color:rgb(30, 238, 134)">Read More &rarr;</a>
+                        </h5>
+                        <div class><small class="left" style="color: rgb(236, 51, 27);">{{ post.date_posted }}</small>
+                        </div>
                     </div>
                 </div>
 
                 {% endif %} {% endfor %}{% endfor %}
             </div>
 
-            <hr class="d-sm-none">
-
             <div class="col-sm-4">
-                <div class="card border-primary mb-3" style="max-width: 100%;">
+                <div class="card border-primary mb-3" style="max-width: 100%; background-color: black; border-radius: 15px;">
                     <div class="card-header">Header</div>
                     <div class="card-body text-primary">
                         <h5 class="card-title">Primary card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card border-secondary mb-3" style="max-width: 100%;">
+                <div class="card border-secondary mb-3" style="max-width: 100%; background-color: black; border-radius: 15px;">
                     <div class="card-header">Header</div>
                     <div class="card-body text-secondary">
                         <h5 class="card-title">Secondary card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card border-success mb-3" style="max-width: 100%;">
+                <div class="card border-success mb-3" style="max-width: 100%; background-color: black; border-radius: 15px;">
                     <div class="card-header">Header</div>
                     <div class="card-body text-success">
                         <h5 class="card-title">Success card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card border-danger mb-3" style="max-width: 100%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-danger">
-                        <h5 class="card-title">Danger card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card border-warning mb-3" style="max-width: 100%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-warning">
-                        <h5 class="card-title">Warning card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card border-info mb-3" style="max-width: 100%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-info">
-                        <h5 class="card-title">Info card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card border-light mb-3" style="max-width: 100%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-dark">
-                        <h5 class="card-title">Dark card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
+        
             </div>
         </div>
     </div>
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <p>Footer</p>
+    <div class="footer " id="footer " style="background: rgb(53, 3, 63); margin-top:100%; ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-3 col-sm-2 col-xs-3 ">
+                    <ul>
+                        <li><a class="email " href="# " style="font-size: 15px; color: darkgray; "> Contract: csayan.py@gmail.com </a></li>
+                        <br/>
+                        <li><a class="email " href="https://www.linkedin.com/in/ayan-mondal-ba5a33183/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_ top%3BhtgTt968R4iWVrUdY21LWQ%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=Xd50zyxiTXCOB2xKbqP33g%3D%3D " target="_blank " style="font-size: 20px; color: darkgray; "> Linkdin </a></li>
+                        <br/>
+
+                        <li><a class="email " href="https://www.instagram.com/a.y.a.n_9929/" target="_blank " style="font-size: 20px; color: darkgray; "> Instagram </a></li>
+                        <br/>
+
+                        <a style="color: blueviolet;" target="_blank" href="https://www.buie.ac.in/">Bankura Unnayani Institute Of Engineering</a>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     {% endblock %}
 </body>

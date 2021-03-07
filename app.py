@@ -143,7 +143,7 @@ def save_picture(form_picture):
 def chatroom():
     users= User.query.all()
     page = request.args.get('page',1, type=int)
-    posts = Post.query.paginate(page=page,per_page=20)
+    posts = Post.query.paginate(page=page,per_page=10)
     return render_template('chat.html',users=users,posts=posts,current_user=current_user)
 
 @app.route('/allposts',methods=['GET','POST'])

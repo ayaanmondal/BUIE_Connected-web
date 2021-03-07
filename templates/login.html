@@ -8,38 +8,41 @@
 </style>
 
 <body>
-    <div class="rightfloat">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="w3-panel w3-card" style="width: 100%;">
+                    <h1 style="color: rgb(206, 12, 223); text-align: center;">Login</h1>
+                    <h7 style="color: gainsboro;">Enter your details to login.</h7>
+                    <h1> </h1>
+                    <form action="{{url_for('login')}}" , method="POST">
+                        <div>
+                            {{ form.email(class='form-control',placeholder='Email', autocomplete='off',autofocus=true,style=" font-size:20px;")}}
+                            <ul>
+                                {% for error in form.email.errors %}
+                                <li style="color: firebrick;">{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-        <div class="w3-panel w3-card" style="width: 100%;">
-            <h1>login</h1>
+                        <div>
+                            {{ form.password(class='form-control',placeholder='Password',style=" font-size:20px;")}}
+                            <ul>
+                                {% for error in form.password.errors %}
+                                <li style="color: firebrick;">{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div>
+                            {{ form.submit_botton(class='form-control',placeholder="Login",style=" font-size:20px; font-weight:800; color:blueviolet")}}
+                        </div>
+                        <h1> </h1>
+                        <a style="font-size:20px; color: firebrick;">Not a member?</a><a href="/signup" style="font-size:20px; color:rgb(11, 144, 200)"> Register.</a> {{ form.csrf_token }}
 
-            <form action="{{url_for('login')}}" , method="POST">
-                <div>
-                    {{ form.email(class='form-control',placeholder='Email_id', autocomplete='off',autofocus=true,style=" font-size:20px; height:50px; width:200%;")}}
-                    <ul>
-                        {% for error in form.email.errors %}
-                        <li>{{error}}</li>
-                        {% endfor %}
-                    </ul>
+                    </form>
                 </div>
-
-                <div>
-                    {{ form.password(class='form-control',placeholder='password',style=" font-size:20px; height:50px; width:200%;")}}
-                    <ul>
-                        {% for error in form.password.errors %}
-                        <li>{{error}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div>
-                    {{ form.submit_botton(class='form-control',placeholder="Login",style=" font-size:20px; height:50px; width:200%;")}}
-                </div>
-                <a style="font-size:20px;">New User</a><a href="/signup" style="font-size:20px;"> Register here</a> {{ form.csrf_token }}
-
-            </form>
+            </div>
         </div>
-    </div>
-    </div>
     </div>
 
 </body>
