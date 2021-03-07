@@ -16,7 +16,7 @@ app.secret_key="winner winner chicken dinner"
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['SQLALCHEMY_DATABASE_URI']='sqlite:////tmp/test.db'
 #app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
-app.config['SQLALCHEMY_DATABASE_URI']='postgres://zpkbbytkeqmvec:1dc87f0a9952e95d6158f933cd8ac5159cf03f5efeb3c19b1c5307e231390e75@ec2-174-129-255-37.compute-1.amazonaws.com:5432/dbjg2m58bvo7f2'
+app.config['SQLALCHEMY_DATABASE_URI']='Database URL'
 
 db = SQLAlchemy(app)
 
