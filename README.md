@@ -31,8 +31,6 @@
 ### Deployment to heroku
 ![](git_images/image1.png)
 
-### Welcome page
-<img src ="git_images/image2.png" width =600>
 
 ### Aftre Login :
 |<img src ="git_images/image5.png" width =400 hight = 800 > | <img src ="git_images/image6.png" width =400 hight = 800>
