@@ -34,9 +34,6 @@
 ### Welcome page
 <img src ="git_images/image2.png" width =600>
 
-### |...........................Login page..........................|.......................Sign up page...........................|
-|<img src ="git_images/image3.png" width =400> | <img src ="git_images/image4.png" width =400>
-
 ### Aftre Login :
 |<img src ="git_images/image5.png" width =400 hight = 800 > | <img src ="git_images/image6.png" width =400 hight = 800>
 
